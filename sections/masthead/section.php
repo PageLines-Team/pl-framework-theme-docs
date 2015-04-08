@@ -88,45 +88,7 @@ class PLMasthead extends PageLinesSection {
 						),
 					),
 				);
-			
-		// for($i = 1; $i <= 2; $i++){
 
-		// 	$options[] = array(
-		// 		'key'		=> 'masthead_button_multi_'.$i,
-		// 		'type'		=> 'multi',
-		// 		'col'		=> 3,
-		// 		'title'		=> __('Masthead Action Button '.$i, 'pagelines'),
-		// 		'opts'	=> array(
-		// 			array(
-		// 				'key'		=> 'masthead_button_link_'.$i,
-		// 				'type' => 'text',
-		// 				'label' => __( 'Enter the link destination (URL - Required)', 'pagelines' ),
-
-		// 			),
-		// 			array(
-		// 				'key'		=> 'masthead_button_text_'.$i,
-		// 				'type' 			=> 'text',
-		// 				'label' 	=> __( 'Masthead Button Text', 'pagelines' ),
-		// 			 ),
-
-		// 			array(
-		// 				'key'		=> 'masthead_button_target_'.$i,
-		// 				'type'			=> 'check',
-		// 				'default'		=> false,
-		// 				'label'	=> __( 'Open link in new window.', 'pagelines' ),
-		// 			),
-		// 			array(
-		// 				'key'		=> 'masthead_button_theme_'.$i,
-		// 				'type'			=> 'select_button',
-		// 				'default'		=> false,
-		// 				'label'		=> __( 'Select Button Color', 'pagelines' ),
-					
-		// 			),
-		// 		)
-		// 	);
-
-		// }
-			
 				
 		$options[] = array(
 					'key'			=> 'masthead_menu',
