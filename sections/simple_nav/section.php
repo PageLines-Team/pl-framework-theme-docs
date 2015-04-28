@@ -40,8 +40,19 @@ class SimpleNav extends PageLinesSection {
 	}
 
 
+	function nav_config(){
+		$config = array(
+				'key'			=> 'simple_nav_menu', 
+				'menu' 			=> $this->opt('simple_nav_menu'), 
+				'mode'			=> 'simple', 
+				'default'		=> false
+			); 
+
+		return $config; 
+	}
+
    function section_template() {
-		echo pl_dynamic_nav('simple_nav_menu', $this->opt('simple_nav_menu'), '', '', 'quicklinks');
+		echo pl_dynamic_nav(  $this->nav_config() );
 	}
 
 }
