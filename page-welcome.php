@@ -23,13 +23,13 @@ pl_add_template_settings( $opts );
 
 $default_banner = array(
 
-		'header' 				=> 'Built for Perfectionists', 
-		'subheader' 			=> 'PageLines and WordPress is the best way to create and maintain client websites.', 
-		'button_primary'		=> 'http://www.pagelines.com',
-		'button_primary_text'	=> 'Read the Docs',
+		'header' 								=> 'Built for Perfectionists', 
+		'subheader' 						=> 'PageLines and WordPress is the best way to create and maintain client websites.', 
+		'button_primary'				=> 'http://www.pagelines.com',
+		'button_primary_text'		=> 'Read the Docs',
 		'button_primary_theme'	=> 'ol-white',
-		'effects'				=> 'pl-effect-window-height',
-		'theme'					=> 'pl-scheme-dark'
+		'effects'								=> 'pl-effect-window-height',
+		'theme'									=> 'pl-scheme-dark'
 
 	);
 
@@ -38,7 +38,7 @@ $default_banner = array(
 
 <div class="banner-board">
 
-	<?php echo pl_get_section( array('section' => 'elements', 'id' => 'e987654dasdf', 'settings' => $default_banner ) );?>
+	<?php echo pl_get_section( array('section' => 'elements', 'id' => 'can_support_id_up_to_50_chars', 'settings' => $default_banner ) );?>
 
 </div>
 
