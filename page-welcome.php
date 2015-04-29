@@ -23,27 +23,63 @@ pl_add_template_settings( $opts );
 
 $default_banner = array(
 
-		'header' 								=> 'Built for Perfectionists', 
-		'subheader' 						=> 'PageLines and WordPress is the best way to create and maintain client websites.', 
+		'header' 								=> 'Welcome to The Docs', 
+		'subheader' 						=> 'Getting started guide and creation docs for PageLines Framework 5', 
 		'button_primary'				=> 'http://www.pagelines.com',
 		'button_primary_text'		=> 'Read the Docs',
-		'button_primary_theme'	=> 'ol-white',
+		'button_primary_style'	=> 'primary',
 		'effects'								=> 'pl-effect-window-height',
 		'theme'									=> 'pl-scheme-dark'
 
 	);
 
+$default_boxes = [
+		
+		'header'	=> 'Tools for Beautiful Sites',
+
+		'ibox_array' 			=> [
+			[
+				'title'		=> "Simple Editing", 
+				'text'		=> 'Everything in F5 is designed to be customized easily as you see it.',
+				'icon'		=> 'clock-o'
+			],
+			[
+				'title'		=> "Drag &amp; Drop", 
+				'text'		=> 'Control your layouts completely with drag and drop editing.', 
+				'icon'		=> 'random'
+			],
+			
+			[
+				'title'		=> "For Pros &amp; Clients.", 
+				'text'		=> 'Features that both professional AND clients will love',
+				'icon'		=> 'user-plus'
+			],
+			[
+				'title'		=> "Simple.", 
+				'text'		=> 'A minimal interface but with maximum power. Forget the bloat.',
+				'icon'		=> 'circle-o'
+			],
+
+			
+			[
+				'title'		=> "Responsive", 
+				'text'		=> 'More advanced responsive features than any other framework.',
+				'icon'		=> 'mobile-phone'
+			], 
+			[
+				'title'		=> "Developer Friendly", 
+				'text'		=> 'Everything can be accessed and modified using the robust developer tools.',
+				'icon'		=> 'code'
+			], 
+		]
+	];
+
 
 ?>
 
-<div class="banner-board">
+<?php echo pl_get_section( array('section' => 'elements', 'id' => 'uid2121', 'settings' => $default_banner ) );?>
 
-	<?php echo pl_get_section( array('section' => 'elements', 'id' => 'can_support_id_up_to_50_chars', 'settings' => $default_banner ) );?>
-
-</div>
-
-
-<?php echo pl_get_section( array('section' => 'slider', 'id' => '424242') );?>
+<?php echo pl_get_section( array( 'section' => 'boxes', 'id' => 'someUniqueID2', 'settings' => $default_boxes ) );?>
 
 <?php echo pl_get_section( array('section' => 'hero', 'id' => '2222223') );?>
 
