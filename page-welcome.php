@@ -60,7 +60,6 @@ $default_boxes = [
 				'icon'		=> 'circle-o'
 			],
 
-			
 			[
 				'title'		=> "Responsive", 
 				'text'		=> 'More advanced responsive features than any other framework.',

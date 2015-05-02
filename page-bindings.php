@@ -1,33 +1,31 @@
 <?php
 /*
- * Template Name: PageLines Bindings
+ * Template Name: PL Options and Bindings
  * Description: Overview of the PageLines binding APIs
  */
 
 
-$opts = array(
-	array(
-		'key'		=> 'post_content',
-		'col'		=> 1,
-		'type'		=> 'edit_post',
-		'title'		=> __( 'Edit Post Content', 'pagelines' ),
-		'label'		=>	__( '<i class="icon icon-pencil"></i> Edit Post Info', 'pagelines' ),
-		'help'		=> __( 'This section uses WordPress posts. Edit post information using WordPress admin.', 'pagelines' ),
-		'classes'	=> 'btn-primary'
-	),
+$default_banner = array(
+
+		'header' 								=> 'Options &amp; Bindings', 
+		'subheader' 						=> 'A simple interface creating easily customized pages.',
+		'theme'									=> 'pl-scheme-dark'
+
 	);
 
-pl_add_template_settings( $opts );
 
 
-get_header(); ?>
 
-<div  class="pl-content">
-	<div class="row">
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
-	</div>
+echo pl_get_section( array('section' => 'elements', 'settings' => $default_banner ) );?>
+
+<div class="pl-content">
+
+	<h2>About Options and Bindings</h2>
+	<p>PageLines has a simple HTML interface that allows you to create easily editable templates and sections in your theme.</p>
+
+	<pre>
+	<code class="language-css">
+	p { color: red }</code></pre>
+
+
 </div>
-
-<?php get_footer(); ?>
