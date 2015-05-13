@@ -15,6 +15,5 @@ $default_banner = array(
   ?>
 
 <div class="sticky-nav">
-asdfasdf
 <?php echo pl_get_section( array('section' => 'navigation') );?>
 </div>

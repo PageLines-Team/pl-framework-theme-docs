@@ -5,8 +5,8 @@
  */
 
 
-$opts = array(
-	array(
+$opts = [
+	[
 		'key'		=> 'post_content',
 		'col'		=> 1,
 		'type'		=> 'edit_post',
@@ -14,12 +14,23 @@ $opts = array(
 		'label'		=>	__( '<i class="icon icon-pencil"></i> Edit Post Info', 'pagelines' ),
 		'help'		=> __( 'This section uses WordPress posts. Edit post information using WordPress admin.', 'pagelines' ),
 		'classes'	=> 'btn-primary'
-	),
-	);
+	],
+	[
+		'key'			=> 'page_header',
+		'type'		=> 'text',
+		'title'		=> __( 'Some Title', 'pagelines' ),
+		'label'		=>	__( '<i class="icon icon-pencil"></i> the label', 'pagelines' )
+	],
+];
 
 pl_add_template_settings( $opts );
 
 
+
+$navbanner = [
+		'effects'								=> 'pl-effect-window-height',
+		'theme'									=> 'pl-scheme-dark'
+	];
 
 $default_banner = array(
 
@@ -75,8 +86,16 @@ $default_boxes = [
 
 
 ?>
+<h2 data-bind="text: page_header">asdfjhasldfa</h2>
+as
 
-<?php echo pl_get_section( array('section' => 'elements', 'id' => 'uid2121', 'settings' => $default_banner ) );?>
+<?php echo pl_get_section( array( 'section' => 'elements' ) ); ?>
+df
+asdf
+
+<?php echo pl_get_section( array( 'section' => 'navbanner' ) ); ?>
+
+<?php // echo pl_get_section( array('section' => 'elements', 'id' => 'uid2121', 'settings' => $default_banner ) );?>
 
 <?php echo pl_get_section( array( 'section' => 'boxes', 'id' => 'someUniqueID2', 'settings' => $default_boxes ) );?>
 
@@ -87,6 +106,10 @@ $default_boxes = [
 
 <div  class="pl-content">
 	<div class="row-flex">
+	a
+	sdf
+	asdf
+	a
 		<div class="col-sm-4">123</div>
 		<div class="col-sm-4">123</div>
 		<div class="col-sm-4">123</div>
