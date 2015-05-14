@@ -128,7 +128,7 @@ module.exports = function(grunt) {
 					      }
 					    },
 					    cache: 'sftpCache.json',
-					    src: 'src',
+					    src: 'dist',
 					    dest: 'www/dev-connect-files',
 					    serverSep: '/',
 					    concurrency: 4,
