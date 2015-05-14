@@ -23,7 +23,7 @@ $opts = [
 	],
 ];
 
-pl_add_template_settings( $opts );
+pl_add_static_settings( $opts );
 
 
 
