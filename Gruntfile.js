@@ -116,7 +116,25 @@ module.exports = function(grunt) {
                     nospawn: true,
                 }
             }
-          }
+          },
+					'sftp-deploy': {
+					  build: {
+					    auth: {
+					      host: 'deploy.pagelines.io',
+					      port: 22,
+					      authKey: {
+					      	'username': grunt.option('ssh_user'),
+									'password': grunt.option('ssh_pass'),
+					      }
+					    },
+					    cache: 'sftpCache.json',
+					    src: 'dist',
+					    dest: 'www/dev-connect-files',
+					    serverSep: '/',
+					    concurrency: 4,
+					    progress: true
+					  }
+					}
 
     });
 
@@ -128,6 +146,7 @@ module.exports = function(grunt) {
 			'less',						// build that less
       'copy',           // copy the files we need
       'compress',       // create out zip
+			'sftp-deploy',		// make zip
       'shell',          // delete latest release
       'github-release',  // create latest release
     ]);
