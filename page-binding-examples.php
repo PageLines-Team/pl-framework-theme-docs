@@ -32,11 +32,25 @@ $opts = array(
             ),
           ), 
       ),
+  ), 
+  array(
+      'type'  => 'multi', 
+      'title' => 'Callback Binding',
+      'opts'  => array(
+          array(
+            'key'     => 'list_taxonomy',
+            'type'    => 'select_wp_tax',
+            'label'   => __( 'Select Taxonomy', 'pagelines' ),
+            
+          ), 
+
+      ),
   )
 
 );
 
 pl_add_static_settings( $opts );
+
 
 ?>
 
@@ -53,7 +67,19 @@ pl_add_static_settings( $opts );
 
   </div>
 
-  
+  <div class="docs-example">
+
+    <h3>Callback Binding</h3>
+
+    <p>Changing the option will get all taxonomies of a certain type and list them here.</p>
+
+    <div class="docs-container" data-bind="plcallback: list_taxonomy" data-callback="taxlist">
+      None Selected
+    </div>
+
+  </div>
+
+
 
 </div>
 

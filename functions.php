@@ -48,3 +48,39 @@ function pl_create_code( $code, $lang = 'php' ){
   return $output;
 
 }
+
+
+/**
+ * Callback Example. Must be in functions.php since it runs in AJAX
+ */
+add_filter('pl_binding_taxlist', 'pl_list_tax', 10, 2);  
+function pl_list_tax( $response, $data ){
+
+  // Value of option / variable assigned to plcallback
+  $taxonomy = $data['value'];
+
+  // editID is always passed
+  $id = $data['editID'];
+
+  // Do something
+  $the_terms = get_terms( $taxonomy );
+
+  $html = '';
+
+  if( is_array( $the_terms ) ){
+    foreach( $the_terms as $term ){
+        $html .= sprintf('<span><i class="icon icon-tag" style="opacity: .2;"></i> %s</span> ', $term->name);
+    }
+  }
+
+  else 
+    return 'No terms returned.';
+  
+
+  // Return
+  $response['template'] = $html;
+
+  return $response;
+}
+
+

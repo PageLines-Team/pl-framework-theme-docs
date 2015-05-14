@@ -20,4 +20,12 @@ Text Domain:  pagelines-child
   border: 1px solid #ddd;
 
   text-align: center;
+  margin-bottom: 2em;
+}
+
+.docs-container{
+  background: #f7f7f7;
+  padding: 2em;
+  text-align: left; 
+  display: inline-block;
 }
