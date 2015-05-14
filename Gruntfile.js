@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 
 				compileMain: {
 		            src: 'build.less',
-	              dest: 'build.css',
+	              dest: 'style.css',
 	                options: {
 	                    strictMath: true,
 	                    sourceMap: false                }
