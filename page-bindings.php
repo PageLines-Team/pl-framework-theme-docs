@@ -88,9 +88,7 @@ echo pl_create_code( $code ); ?>
 
       <h2>Types of Bindings</h2>
       
-
-
-      <h4>Setting Classes: "plclassname"</h4>
+      <h4>Setting Classes: <code>plclassname</code></h4>
 
       <p>The class binding is the easiest way to set the class name on an element to the value of an option.</p>
 
@@ -124,11 +122,11 @@ EOT;
 
 echo pl_create_code( $code ); ?>
 
-      <h4>AJAX Callbacks: "plcallback"</h4>
+      <h4>AJAX Callbacks: <code>plcallback</code></h4>
 
       <p>Often times with bindings you want to do something custom to a template, that requires some work by the server. For this need, we have created the callback binding <code>plcallback</code>.</p>
 
-      <p>The plcallback binding requires some additional PHP to work, but the versatility and power of this binding is unmatched. So let's give it a try...</p>
+      <p>The <code>plcallback</code> binding requires some additional PHP to work, but the versatility and power of this binding is unmatched. So let's give it a try...</p>
 
 <?php
                
@@ -178,9 +176,9 @@ EOT;
 
 echo pl_create_code( $code ); ?>
 
-      <h4>Using "plcallback" in a section</h4>
+      <h4>Using <code>plcallback</code> in a section</h4>
 
-      <p>A common use case for plcallback will be inside of PageLines sections. To illustrate how that should be formatted, here is the following example:</p>
+      <p>A common use case for <code>plcallback</code> will be inside of PageLines sections. To illustrate how that should be formatted, here is the following example:</p>
 <?php
                
 $code = <<<'EOT'
@@ -241,6 +239,65 @@ class My_Awesome_section extends PageLinesSection{
 EOT;
 echo pl_create_code( $code ); ?>
 
+    <h4>Loop Bindings: <code>plforeach</code> and <code>pltemplate</code></h4>
+
+    <p>Often its ideal to tie a template to an array of items inside the framework. In sections, this is controlled by the 'accordion' option type, which allows users to add/reorder/remove items as they please.</p>
+
+    <p>To show these item arrays, we've created the <code>plforeach</code> and <code>pltemplate</code> callbacks, which will loop through them and bind elements within them, on the fly.</p>
+
+    <p>Functionally, these two loops work very much the same way but require a different syntax. Below we have some documented examples:</p>
+
+<?php
+               
+$code = <<<'EOT'
+<?php 
+/**
+ *  Example 1 "Foreach Loop"
+ *  Looping through an accordion array with a foreach
+ *
+ *  Note: To access options outside of the array, use the $root prefix:
+ *    $root.my_other_option_key()
+ */
+?>
+
+
+<div class="slider-gallery rendered-item trigger" data-bind="plforeach: user_item_array">
+
+  <!-- Iterate this item for all items in user_item_array. Get text option from array, and scheme option from outside of array. -->
+  <div class="cell" data-bind="plclassname: $root.scheme()">
+    <div class="cell-text trigger" data-bind="pltext: text"></div>
+  </div>
+
+</div>
+
+<?php 
+
+/**
+ *  Example 2 "Template Loop"
+ *  Looping through an accordion array with a template
+ *
+ *  Similar syntax but put the template code in a script tag and reference it.
+ */
+?>
+<script type="text/html" id="item-template">
+
+<a class="item" data-bind="class: 'col-sm-' + $root.ibox_cols(), plhref: link" >
+  <div class="item-text media-right">
+     <h3 class="item-title" data-bind="pltext: title"></h3>
+     <div class="item-desc" data-bind="pltext: text"></div>
+   </div>
+</a>
+</script>
+
+<!-- Do iteration and reference the script template.. (item-template) -->
+<div class="items-container" data-bind="template: {name: 'item-template', foreach:user_item_array() }" > </div>
+
+<?php 
+
+EOT;
+echo pl_create_code( $code ); ?>
+
+
       <h4>Background Image Binding: plbg</h4>
 
       <h4>Image Source Binding: plimg</h4>
@@ -249,9 +306,6 @@ echo pl_create_code( $code ); ?>
 
       <h4>AJAX Callback Binding: plcallback</h4>
 
-      <h4>Foreach Loop Binding: plforeach</h4>
-
-      <h4>Template Loop Binding: pltemplate</h4>
 
 
 			<h2>Helpers and Fallbacks</h2>

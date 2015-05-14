@@ -38,6 +38,9 @@ function enqueue_child_theme_style() {
 
 
 
+/**
+ * Code syntax creation utility function
+ */
 function pl_create_code( $code, $lang = 'php' ){
 
   $replace_codes = str_replace('[n]', "\n", $code );
@@ -52,6 +55,7 @@ function pl_create_code( $code, $lang = 'php' ){
 
 
 /**
+ * EXAMPLE
  * Callback Example. Must be in functions.php since it runs in AJAX
  */
 add_filter('pl_binding_taxlist', 'pl_list_tax', 10, 2);  
