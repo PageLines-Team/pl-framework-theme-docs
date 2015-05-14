@@ -51,23 +51,81 @@ module.exports = function(grunt) {
         },
       },
 
-        shell: {
+    shell: {
+            options: {
+                stderr: false,
+                failOnError: false
+            },
+            remove_latest_tag: {
+                command: 'git push origin :latest'
+            }
+        },
+		    cssmin: {
+		      options: {
+		        shorthandCompacting: false,
+		        roundingPrecision: -1
+		      },
+		      main: {
+		        src: 'build.css',
+		        dest: 'build.css'
+		      }
+		    },
+		    concurrent: {
+		        all: {
+		          //  tasks: ['watch:js', 'watch:less', 'watch:php'],
+		            tasks: [ 'watch:lessMain', 'watch:lessSections'],
+		            options: {
+		                logConcurrentOutput: true
+		            }
+		        }
+		    },
+		    less: {
+
+				compileMain: {
+		            src: 'build.less',
+	              dest: 'build.css',
+	                options: {
+	                    strictMath: true,
+	                    sourceMap: false                }
+		        },
+	      compileSections: {
+	                src:    'sections/*/build.less', //'sections/*/build.less',
+	                dest:   '',
+	                expand: true,
+	                rename: function(dest, src) {
+	                    return src.replace("build.less", "build.css");
+	                },
+
+	            }
+		    },
+        watch: {
+
+            /** Watch Sections' build.less files */
+            lessSections: {
+                files: [ 'sections/*/build.less' ], // files to watch
+                tasks: [ 'less:compileSections' ],  // what to do on change
+                options: { nospawn: true }          // No child process - 500ms faster
+            },
+            lessMain: {
+                // what files/folder we watching?
+                files: [ 'build.less' ],
+                // tasks to run in order when something changes
+                tasks: ['less:compileMain'],
                 options: {
-                    stderr: false,
-                    failOnError: false
-                },
-                remove_latest_tag: {
-                    command: 'git push origin :latest'
+                    nospawn: true,
                 }
             }
+          }
 
     });
 
     /** Run on GRUNT initialization */
-    grunt.registerTask( 'default', 	[ 'clean'] );
+    grunt.registerTask( 'default', 	[ 'clean', 'less', 'cssmin', 'concurrent' ] );
 
     grunt.registerTask('release', [
       'clean',          // clean the folders
+			'less',						// build that less
+			'cssmin',					// minify
       'copy',           // copy the files we need
       'compress',       // create out zip
       'shell',          // delete latest release
