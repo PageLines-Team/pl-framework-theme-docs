@@ -41,7 +41,7 @@ $opts = array(
             'key'     => 'list_taxonomy',
             'type'    => 'select_wp_tax',
             'label'   => __( 'Select Taxonomy', 'pagelines' ),
-            
+            'default' => 'category'
           ), 
 
       ),
@@ -73,7 +73,13 @@ pl_add_static_settings( $opts );
 
     <p>Changing the option will get all taxonomies of a certain type and list them here.</p>
 
+    <h4>Default</h4>
     <div class="docs-container" data-bind="plcallback: list_taxonomy" data-callback="taxlist">
+      None Selected
+    </div>
+
+    <h4>Lazy Loaded (added pl-load-lazy class)</h4>
+    <div class="docs-container pl-load-lazy" data-bind="plcallback: list_taxonomy" data-callback="taxlist">
       None Selected
     </div>
 
