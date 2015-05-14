@@ -22,9 +22,6 @@ echo pl_get_section( array('section' => 'elements', 'settings' => $default_banne
 	<h2>About Options and Bindings</h2>
 	<p>PageLines has a simple HTML interface that allows you to create easily editable templates and sections in your theme.</p>
 
-	<pre>
-	<code class="language-css">
-	p.test { color: red }</code></pre>
 
 	<div  class="pl-content">
 		<div class="doc-item">
@@ -35,14 +32,102 @@ echo pl_get_section( array('section' => 'elements', 'settings' => $default_banne
 				<p>Bindings are an incredibly easy and powerful way of creating real time editing features for your website. They are completely driven by HTML and tied automatically to options you can create a variety of ways. </p>
 
 			<h2>The Basics</h2>
+
+      <h4>data-bind</h4>
 				<p>PageLines bindings all operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
-				<p>The <code>data-bind</code> attribute can have one or more arguments that tie the content of the elmement to an option.</p>
-				<p>As an example, if you create a text option with a key of "my_option_key", a binding to tie this to the inner HTML of an element woiuld look like this:</p>
-				<pre>
-					<code>
-						<div data-bind="pltext: my_option_key">&gt;?php echo $this->opt('my_option_key');?&lt;</div>
-					</code>
-				</pre>
+
+				<p>The <code>data-bind</code> attribute can have one or more arguments and it ties the element to an option value.</p>
+
+				<p>As an example, if you create a text option with a key of "my_option_key", a binding to tie this to the inner HTML of an element would look like this:</p>
+
+<?php
+               
+$code = <<<'EOT'
+/**
+ *  Example: "Basic data-bind"
+ *  The example below sets the text of an html element to the value of a option.
+ */
+<div data-bind="pltext: my_option_key">
+  <?php echo $this->opt('my_option_key');?>
+</div>
+EOT;
+
+echo pl_create_code( $code ); ?>
+        
+      <h4>Basic Javascript and Using Parenthesis ()</h4>
+      <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then unwrapped as a binding variable. </p>
+      <p>Because of this, if you have a singular value that is equal to the option key, you can only use the key with no '()' however, if you would like to evaluate a basic logical expression, you have to use the option key with () after it. Here is an example:</p>
+
+<?php
+
+$code = <<<'EOT'
+/**
+ *  Example: "Using logic and ()"
+ *  The example below shows how to use logical expressions with () in a data-bind.
+ */
+<div class="col-sm-12" data-bind="class: (cols()) ? 'col-sm-' + cols() : 'col-sm-12'">
+  ...some content... 
+</div>
+
+/**
+ *  If there is no logic, don't use the ()
+ */
+<div class="" data-bind="class: cols">
+  ...some content... 
+</div>
+
+EOT;
+
+echo pl_create_code( $code ); ?>
+
+  <h4>Knockout JS Binding Library</h4>
+    <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
+    <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
+
+    <p><a class="btn btn-default" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
+
+      <h2>Types of Bindings</h2>
+      
+
+
+      <h4>Setting Class Names: "plclassname"</h4>
+
+      <p>The class binding is the easiest way to set the class name on an element to the value of an option.</p>
+
+<?php
+               
+$code = <<<'EOT'
+/**
+ *  Example 1
+ *  The class will be set to the value of 'my_option_key'. In this case equal to 'user-value'.
+ */
+<div class="user-value" data-bind="plclassname: my_option_key">
+  ...Some Content...
+</div>
+
+/**
+ *  Example 2 "If / Else"
+ *  If set, the class will be set to the value of 'my_option_key' else it will be set to default.
+ */
+<div class="my-default" data-bind="plclassname: (my_option_key()) ? my_option_key() : 'my-default'">
+  ...Some Content...
+</div>
+EOT;
+
+echo pl_create_code( $code ); ?>
+
+      <h4>Background Image Binding: plbg</h4>
+
+      <h4>Image Source Binding: plimg</h4>
+
+      <h4>Text &amp; HTML Binding: pltext</h4>
+
+      <h4>AJAX Callback Binding: plcallback</h4>
+
+      <h4>Foreach Loop Binding: plforeach</h4>
+
+      <h4>Template Loop Binding: pltemplate</h4>
+
 
 			<h2>Helpers and Fallbacks</h2>
 
@@ -76,26 +161,7 @@ echo pl_get_section( array('section' => 'elements', 'settings' => $default_banne
 					
 				</ul>
 
-			<h2>Types of Bindings</h2>
-		
-			<h4>Knockout JS Binding Library</h4>
-			<p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
-			<p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
-
-			<h4>CSS Class Binding: plclass</h4>
-
-			<h4>Background Image Binding: plbg</h4>
-
-			<h4>Image Source Binding: plimg</h4>
-
-			<h4>Text &amp; HTML Binding: pltext</h4>
-
-			<h4>AJAX Callback Binding: plcallback</h4>
-
-			<h4>Foreach Loop Binding: plforeach</h4>
-
-			<h4>Template Loop Binding: pltemplate</h4>
-
+			
 
 
 

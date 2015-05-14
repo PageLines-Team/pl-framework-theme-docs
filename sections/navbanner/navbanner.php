@@ -34,7 +34,7 @@ class NavBanner extends PageLinesSection {
 
       );
 
-    echo pl_get_section( [ 'section' => 'navigation', 'id' => '1232211', 'settings' => ['navi_logo' => '[pl_image_url]/leaf-white.png'] ] );
+    echo pl_get_section( [ 'section' => 'docnav' ] );
 
     echo pl_get_section( [ 'section' => 'elements', 'id' => '123221221', 'settings' => $default_banner ] );
 

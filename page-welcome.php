@@ -86,16 +86,10 @@ $default_boxes = [
 
 
 ?>
-<h2 data-bind="text: page_header">asdfjhasldfa</h2>
-as
 
-<?php echo pl_get_section( array( 'section' => 'elements' ) ); ?>
-df
-asdf
 
 <?php echo pl_get_section( array( 'section' => 'navbanner' ) ); ?>
 
-<?php // echo pl_get_section( array('section' => 'elements', 'id' => 'uid2121', 'settings' => $default_banner ) );?>
 
 <?php echo pl_get_section( array( 'section' => 'boxes', 'id' => 'someUniqueID2', 'settings' => $default_boxes ) );?>
 
