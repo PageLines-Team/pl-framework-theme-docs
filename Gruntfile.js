@@ -63,11 +63,12 @@ module.exports = function(grunt) {
 		    cssmin: {
 		      options: {
 		        shorthandCompacting: false,
-		        roundingPrecision: -1
+		        roundingPrecision: -1,
+						keepSpecialComments: 1
 		      },
 		      main: {
-		        src: 'build.css',
-		        dest: 'build.css'
+		        src: 'style.css',
+		        dest: 'style.css'
 		      }
 		    },
 		    concurrent: {
@@ -120,12 +121,11 @@ module.exports = function(grunt) {
     });
 
     /** Run on GRUNT initialization */
-    grunt.registerTask( 'default', 	[ 'clean', 'less', 'cssmin', 'concurrent' ] );
+    grunt.registerTask( 'default', 	[ 'clean', 'less', 'concurrent' ] );
 
     grunt.registerTask('release', [
       'clean',          // clean the folders
 			'less',						// build that less
-			'cssmin',					// minify
       'copy',           // copy the files we need
       'compress',       // create out zip
       'shell',          // delete latest release
