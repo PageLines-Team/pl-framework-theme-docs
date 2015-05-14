@@ -90,7 +90,7 @@ echo pl_create_code( $code ); ?>
       
 
 
-      <h4>Setting Class Names: "plclassname"</h4>
+      <h4>Setting Classes: "plclassname"</h4>
 
       <p>The class binding is the easiest way to set the class name on an element to the value of an option.</p>
 
@@ -112,8 +112,133 @@ $code = <<<'EOT'
 <div class="my-default" data-bind="plclassname: (my_option_key()) ? my_option_key() : 'my-default'">
   ...Some Content...
 </div>
+
+/**
+ *  Example 3 "Multiple Classes"
+ *  Set multiple classes on the element using an array.
+ */
+<div class="user-value-1 user-value-2" data-bind="plclassname: [ my_key_1, my_key_2 ]">
+  ...Some Content...
+</div>
 EOT;
 
+echo pl_create_code( $code ); ?>
+
+      <h4>AJAX Callbacks: "plcallback"</h4>
+
+      <p>Often times with bindings you want to do something custom to a template, that requires some work by the server. For this need, we have created the callback binding <code>plcallback</code>.</p>
+
+      <p>The plcallback binding requires some additional PHP to work, but the versatility and power of this binding is unmatched. So let's give it a try...</p>
+
+<?php
+               
+$code = <<<'EOT'
+/**
+ *  Example 1
+ *  Creating a typical AJAX callback with an action, callback function and required HTML binding.
+ */
+
+/**
+ * Step 1 - Create the callback function and hook
+ * Note: 
+ *  Function name can be the name of any function
+ *  The callback name is assigned on the binding element. In the data-callback attribute.
+ */
+add_filter( 'pl_binding_callback_name', 'my_function_name', 10, 2);
+
+function my_function_name( $response, $data ){
+
+  // ... Do stuff to get your HTML
+
+  // $data['value'] will contain all the input information from the option
+  // If the binding has multiple options, $data['value'] will be an array
+
+  $size = $data['value']['size'];
+  $color = $data['value']['color'];
+
+  $response[ 'template' ] = sprintf('<button class="btn %s %s">My Button</button>', $size, $color);
+
+  return $response;
+}
+
+/**
+ * Step 2 - Create the Binding
+ * Note: 
+ *  You can pass one or multiple values to the callback. 
+ *  The binding requires an additional data-callback attribute used to identify the filter.
+ */
+?>
+
+  <div data-bind="plcallback: { size: size_option_key, color: color_option_key }" data-callback="callback_name"></div>
+
+<?php
+
+
+EOT;
+
+echo pl_create_code( $code ); ?>
+
+      <h4>Using "plcallback" in a section</h4>
+
+      <p>A common use case for plcallback will be inside of PageLines sections. To illustrate how that should be formatted, here is the following example:</p>
+<?php
+               
+$code = <<<'EOT'
+/**
+ *  Example 2
+ *  Complete example using plcallback inside of a section. 
+ *  Includes setting option, callback and template
+ */
+
+// Create Section
+class My_Awesome_section extends PageLinesSection{
+
+  // Create callback hook
+  function section_persistent(){
+
+    add_filter( 'pl_binding_callback_name', array( $this, 'my_function_name'), 10, 2);
+
+  }
+
+  // Create callback function and return template
+  function my_function_name( $response, $data ){
+
+    $html = do_something( $data['value'] );
+
+    $response[ 'template' ] = $html;
+
+    return $response;
+  
+  }
+  
+  // Create the user option used in the callback
+  function section_opts(){
+      
+    $opts = array(
+      array(
+        'key'     => 'my_option_key',
+        'type'    => 'text',
+        'label'   => 'An Option!'
+      )
+    );
+      
+    return $opts;
+    
+  }
+  
+  // The template shown along with binding html
+  function section_template(){ 
+?>
+
+    <div data-bind="plcallback: my_option_key" data-callback="callback_name"></div>
+
+<?php  
+
+  }
+
+}
+
+EOT;
 echo pl_create_code( $code ); ?>
 
       <h4>Background Image Binding: plbg</h4>

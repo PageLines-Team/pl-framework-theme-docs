@@ -10,3 +10,14 @@ License:      GNU General Public License v2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  pagelines-child
 */
+
+
+
+.docs-example{
+
+  padding: 60px;
+
+  border: 1px solid #ddd;
+
+  text-align: center;
+}
