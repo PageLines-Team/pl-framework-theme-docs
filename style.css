@@ -1,6 +1,6 @@
 /*
 Theme Name:   PageLines Child
-Theme URI:    http://www.pagelines.com
+Theme URI:    
 Description:  
 Author:       PageLines
 Author URI:   http://www.pagelines.com
@@ -24,4 +24,12 @@ Text Domain:  pagelines-child
   padding: 2em;
   text-align: left;
   display: inline-block;
+}
+.doclist .heading,
+.doclist .col-pad {
+  padding: 2em;
+}
+.doclist .heading,
+.doclist .section {
+  border-bottom: 1px solid #eee;
 }

@@ -13,8 +13,6 @@
 
       var that    = this
 
-      console.log('go')
-
       section.find('.docnav').addClass('gogogogo').scrollupbar();
       
     }
