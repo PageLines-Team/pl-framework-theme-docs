@@ -18,7 +18,7 @@ class NavBanner extends PageLinesSection {
    *  Standard method for setting defaults for standard options.
    */
   function section_defaults(){
-    return [ 'effects' => 'pl-effect-window-height', 'theme' => 'pl-scheme-dark', 'navi_logo' => '[pl_image_url]/leaf-white.png' ];
+    return array( 'effects' => 'pl-effect-window-height', 'theme' => 'pl-scheme-dark', 'navi_logo' => '[pl_image_url]/leaf-white.png' );
   }
 
   function section_template(){
@@ -34,9 +34,9 @@ class NavBanner extends PageLinesSection {
 
       );
 
-    echo pl_get_section( [ 'section' => 'docnav' ] );
+    echo pl_get_section( array( 'section' => 'docnav' ) );
 
-    echo pl_get_section( [ 'section' => 'elements', 'id' => '123221221', 'settings' => $default_banner ] );
+    echo pl_get_section( array( 'section' => 'elements', 'id' => '123221221', 'settings' => $default_banner ) );
 
 
   }

@@ -25,11 +25,41 @@ Text Domain:  pagelines-child
   text-align: left;
   display: inline-block;
 }
+.doclist-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+}
 .doclist .heading,
-.doclist .col-pad {
-  padding: 2em;
+.doclist .section {
+  padding: 2em 0;
 }
 .doclist .heading,
 .doclist .section {
   border-bottom: 1px solid #eee;
+}
+.doclist pre[class*="language-"],
+.doclist code[class*="language-"] {
+  font-size: .85em;
+  line-height: 1.3em;
+}
+.doclist-sidebar {
+  text-align: right;
+  font-size: .9em;
+  border-right: 1px solid #eee;
+}
+.doclist-sidebar ul {
+  list-style-type: none;
+}
+.doclist-sidebar ul > li > a {
+  color: inherit;
+  padding: 5px;
+  display: block;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.doclist-content {
+  max-width: 700px;
+}
+.doclist-content .doclist-content-pad {
+  padding-left: 1rem;
 }

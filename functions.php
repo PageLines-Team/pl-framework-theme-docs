@@ -31,10 +31,10 @@ function pl_add_syntax_highlighting(){
 <?php 
 }
 
-add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style' );
-function enqueue_child_theme_style() {
-    wp_enqueue_style( 'pagelines-framework-child', get_stylesheet_directory_uri() . '/build.css' );
-}
+// add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style' );
+// function enqueue_child_theme_style() {
+//     wp_enqueue_style( 'pagelines-framework-child', get_stylesheet_directory_uri() . '/build.css' );
+// }
 
 
 

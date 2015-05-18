@@ -17,10 +17,11 @@ $default_banner = array(
 echo pl_get_section( array('section' => 'elements', 'settings' => $default_banner ) );
  ?>
 
+<div class="doclist-container">
 
-<div class="doclist container">
+  <div class="doclist row">
   
-    <sidebar class="doclist-sidebar">
+    <sidebar class="doclist-sidebar col-sm-3">
       <ul>
         <li><a href="#">Test</a></li>
         <li><a href="#">Test</a></li>
@@ -30,63 +31,44 @@ echo pl_get_section( array('section' => 'elements', 'settings' => $default_banne
       </ul>
     </sidebar>
 
-    <div class=" doclist-content">    
-
+    <div class="doclist-content col-sm-8">    
+      <div class="doclist-content-pad">
       <div class="heading">
         <h1>The Basics</h1>
       </div>
 
-      <div class="section row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-5">
-          <div class="col-pad">
-            
+      <div class="section">
+      
 
-            <h2>Introduction</h2>
-              <p>Bindings are an incredibly easy and powerful way of creating real time editing features for your website. They are completely driven by HTML and tied automatically to options you can create a variety of ways. </p>
+        <h2>Introduction</h2>
+          <p>Bindings are an incredibly easy and powerful way of creating real time editing features for your website. They are completely driven by HTML and tied automatically to options you can create a variety of ways. </p>
 
-            <h2>The Basics</h2>
+        <h2>The Basics</h2>
 
-            <h4><code>data-bind</code></h4>
-              <p>PageLines bindings all operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
+        <h4><code>data-bind</code></h4>
+        <p>PageLines bindings all operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
 
-              <p>The <code>data-bind</code> attribute can have one or more arguments and it ties the element to an option value.</p>
+        <p>The <code>data-bind</code> attribute can have one or more arguments and it ties the element to an option value.</p>
 
-              <p>As an example, if you create a text option with a key of "my_option_key", a binding to tie this to the inner HTML of an element would look like this:</p>
+        <p>As an example, if you create a text option with a key of "my_option_key", a binding to tie this to the inner HTML of an element would look like this:</p>
 
-          </div>
-        </div>
-        <div class="col-sm-5">
-          <div class="col-pad">
 <?php
-               
 $code = <<<'EOT'
 /**
- *  Example: "Basic data-bind"
- *  The example below sets the text of an html element to the value of a option.
- */
+*  Example: "Basic data-bind"
+*  The example below sets the text of an html element to the value of a option.
+*/
 <div data-bind="pltext: my_option_key">
-  <?php echo $this->opt('my_option_key');?>
+<?php echo $this->opt('my_option_key');?>
 </div>
 EOT;
 
-    echo pl_create_code( $code ); ?>
-          </div>
-        </div>
+  echo pl_create_code( $code ); ?>
+    
+          <h4>Basic Javascript and Using Parenthesis ()</h4>
+          <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then unwrapped as a binding variable. </p>
+          <p>Because of this, if you have a singular value that is equal to the option key, you can only use the key with no '()' however, if you would like to evaluate a basic logical expression, you have to use the option key with () after it. Here is an example:</p>
 
-      </div>
-
-      <div class="section row">
-        <div class="col-sm-6">
-          <div class="col-pad">
-            <h4>Basic Javascript and Using Parenthesis ()</h4>
-            <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then unwrapped as a binding variable. </p>
-            <p>Because of this, if you have a singular value that is equal to the option key, you can only use the key with no '()' however, if you would like to evaluate a basic logical expression, you have to use the option key with () after it. Here is an example:</p>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="col-pad">
 <?php
 
 $code = <<<'EOT'
@@ -108,45 +90,14 @@ $code = <<<'EOT'
 EOT;
 
 echo pl_create_code( $code ); ?>
-          </div>
-        </div>
-      </div>
 
-      <div class="section row">
-        <div class="col-sm-6">
-          <div class="col-pad">
             <h4>Knockout JS Binding Library</h4>
               <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
               <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
 
-              
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="col-pad">
+
             <p><a class="btn btn-default btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
-          </div>
-        </div>
-      </div>  
-
-      <div class="section row">
-        <div class="col-sm-6">
-          <div class="col-pad">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="col-pad">
-          </div>
-        </div>
-      </div>
-    	
-
-		<div class="doc-item">
-
-        
-      
-
-
+   
 
   <h4>Knockout JS Binding Library</h4>
     <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
@@ -366,7 +317,30 @@ EOT;
 echo pl_create_code( $code ); ?>
 
 
-      <h4>Background Image Binding: plbg</h4>
+      <h4>Background Image Binding: <code>plbg</code></h4>
+
+      <p>In order to help you create options for setting background images, we've created the simple <code>plbg</code> binding.</p>
+
+<?php
+               
+$code = <<<'EOT'
+<?php 
+/**
+ *  Example 1 "Setting Background Image"
+ *  Shows you how to create an option and set background image.
+ */
+?>
+
+<div class="element" data-bind="plbg: bg_option_key">
+
+  <div class="some-content">I love dogs.</div>
+
+</div>
+
+<?php 
+
+EOT;
+echo pl_create_code( $code ); ?>
 
       <h4>Image Source Binding: plimg</h4>
 
@@ -406,10 +380,9 @@ echo pl_create_code( $code ); ?>
 				</ul>
 
 			
-        </div>
+      </div> <!-- .section -->
+
       </div>
-
-
-
-
-</div>
+    </div> <!-- .doclist-content -->
+  </div> <!-- .doclist -->
+</div> <!-- .doclist-container -->
