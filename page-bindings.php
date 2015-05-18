@@ -4,17 +4,6 @@
  * Description: Overview of the PageLines binding APIs
  */
 
-
-$default_banner = array(
-
-		'header' 								=> 'Options &amp; Bindings', 
-		'subheader' 						=> 'A simple interface creating easily customized pages.',
-		'theme'									=> 'pl-scheme-dark'
-
-	);
-
-
-echo pl_get_section( array('section' => 'elements', 'settings' => $default_banner ) );
  ?>
 
 <div class="doclist-container">
@@ -34,7 +23,7 @@ echo pl_get_section( array('section' => 'elements', 'settings' => $default_banne
     <div class="doclist-content col-sm-8">    
       <div class="doclist-content-pad">
       <div class="heading">
-        <h1>The Basics</h1>
+        <h1>Option Bindings</h1>
       </div>
 
       <div class="section">
@@ -99,12 +88,6 @@ echo pl_create_code( $code ); ?>
             <p><a class="btn btn-default btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
    
 
-  <h4>Knockout JS Binding Library</h4>
-    <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
-    <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
-
-    <p><a class="btn btn-default" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
-
       <h2>Types of Bindings</h2>
       
       <h4>Setting Classes: <code>plclassname</code></h4>
@@ -116,7 +99,8 @@ echo pl_create_code( $code ); ?>
 $code = <<<'EOT'
 /**
  *  Example 1
- *  The class will be set to the value of 'my_option_key'. In this case equal to 'user-value'.
+ *  The class will be set to the value of 'my_option_key'. 
+ *  In this case equal to 'user-value'.
  */
 <div class="user-value" data-bind="plclassname: my_option_key">
   ...Some Content...
@@ -321,30 +305,36 @@ echo pl_create_code( $code ); ?>
 
       <p>In order to help you create options for setting background images, we've created the simple <code>plbg</code> binding.</p>
 
+      
+
 <?php
                
 $code = <<<'EOT'
-<?php 
-/**
- *  Example 1 "Setting Background Image"
- *  Shows you how to create an option and set background image.
- */
-?>
-
-<div class="element" data-bind="plbg: bg_option_key">
+<!-- Example "Setting Background Image" -->
+<div class="element pl-bg-cover" data-bind="plbg: option_key">
 
   <div class="some-content">I love dogs.</div>
 
 </div>
-
-<?php 
-
 EOT;
 echo pl_create_code( $code ); ?>
 
-      <h4>Image Source Binding: plimg</h4>
+      <p><strong>Note:</strong> This binding will set the <code>background-image</code> CSS rule on the element. Any other styling will need to be handled via CSS. Typically items are set to <code>background-size: cover;</code> which you can apply using the <code>pl-bg-cover</code> helper function..</p>
 
-      <h4>Text &amp; HTML Binding: pltext</h4>
+      <h4>Image Source Binding: <code>plimg</code></h4>
+
+      <p>To set the src value for images use the <code>plimg</code> binding.</p> 
+      <p>This binding will set the image src on load if the value of the option is not blank. If the value is blank, it will apply a 'js-unset' class which hides the img from view. This gives the user the ability to hide the image by setting it to blank.</p>
+
+<?php
+               
+$code = <<<'EOT'
+<!-- Example "Setting Image src" -->
+<img src="" data-bind="plimg: option_key" >
+EOT;
+echo pl_create_code( $code ); ?>
+
+      <h4>Text &amp; HTML Binding: <code>pltext</code></h4>
 
 
 			<h2>Helpers and Fallbacks</h2>
