@@ -48,8 +48,12 @@ $code = <<<'EOT'
 <div data-bind="pltext: my_option_key"></div>
 EOT;
 
-  echo pl_create_code( $code ); ?>
-    
+echo pl_create_code( $code ); ?>
+
+          <h3>When To Use Front End Options</h3>
+          <p>Front end options and bindings are best used for content that should be changed on a page-by-page, or type-by-type basis. For example, the text of a masthead or a background image. Don't use the front end for options that should be handled globally for a section or plugin, like social icons or meta content formatting.</p>
+          <p><strong>A good rule of thumb:</strong> if the section changes from page to page, use front end options (binding).</p>
+          
           <h3>Binding JS and Using Parenthesis ()</h3>
           <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then set up as a binding variable. </p>
           <p>Because of this, if you have one value that is equal to the option key, you only use the key with no '()' however, if you would like to evaluate a basic logical expression, or do more complicated bindings, you have to use the variable with () after it. Here is an example:</p>
