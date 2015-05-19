@@ -20,12 +20,11 @@
       <div class="doclist-content-pad docnav-scan">
       
       <div class="heading">
-        <h1>Option Bindings</h1>
+        <h1>Syncing Options with Bindings</h1>
       </div>
 
       <div class="section">
       
-
         <h2>Introduction</h2>
           <p>Bindings are a way of syncing your options with what visitors see when they visit your site.</p>
 
@@ -33,7 +32,7 @@
 
         <h2>The Basics</h2>
 
-        <h4><code>data-bind</code></h4>
+        <h3><code>data-bind</code></h3>
         <p>PageLines bindings operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
 
         <p>The <code>data-bind</code> attribute can have one or more arguments and it ties the element to an option value.</p>
@@ -51,9 +50,9 @@ EOT;
 
   echo pl_create_code( $code ); ?>
     
-          <h4>Basic Javascript and Using Parenthesis ()</h4>
-          <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then unwrapped as a binding variable. </p>
-          <p>Because of this, if you have a singular value that is equal to the option key, you can only use the key with no '()' however, if you would like to evaluate a basic logical expression, you have to use the option key with () after it. Here is an example:</p>
+          <h3>Binding JS and Using Parenthesis ()</h3>
+          <p>The value associated with <code>data-bind</code> is first evaluated as Javascript and then set up as a binding variable. </p>
+          <p>Because of this, if you have one value that is equal to the option key, you only use the key with no '()' however, if you would like to evaluate a basic logical expression, or do more complicated bindings, you have to use the variable with () after it. Here is an example:</p>
 
 <?php
 
@@ -77,12 +76,12 @@ EOT;
 
 echo pl_create_code( $code ); ?>
 
-            <h4>Knockout JS Binding Library</h4>
-              <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
-              <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
+          <h3>Knockout JS Binding Library</h3>
+            <p>The PageLines binding system is based on the popular Knockout JS library and supports all of it's standard bindings. You can reference and use all the bindings documented on their website.</p>
+            <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
 
 
-            <p><a class="btn btn-default btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
+            <p><a class="btn btn-primary btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
    
 
       <h2>Types of Bindings</h2>
@@ -360,8 +359,8 @@ echo pl_create_code( $code ); ?>
         <p>So as an elegant way of dealing with this problem, PageLines uses the trigger helper classes.</p>
 
         <ul>
-          <li><code>pl-trigger</code> </li>
-          <li><code>pl-trigger-container</code> </li>
+          <li><code>pl-trigger</code><br/> If an element has this class, when it's updated, it will also trigger a '<code>template_ready</code>' event on the containing section.</li>
+          <li><code>pl-trigger-el</code> &amp; <code>pl-trigger-container</code><br/> If an element has the <code>.pl-trigger-el</code> class, it will trigger an update event on the <code>.pl-trigger-container</code> element whenever it is updated.</li>
           
         </ul>
 
@@ -383,34 +382,44 @@ EOT;
 echo pl_create_code( $code ); ?>
 
         <h3>Dealing with JS Scripts</h3>
-        <p>To provide the designer some control as to how PageLines bindings behave on page load we've added the pl-lazy-load helper class.</p>
+
+        <p>Often times you want to make bindings work with external JS scripts, like those you use in sliders, galleries, carousels, etc.. The problem is that these scripts are inconsistent and often are problematic when also working with binding updates.</p>
+
+        <p>To resolve this, we've created a simple rendering function you can use to clone your binded (and hidden) html, and then attach your stylized JS to the clone.</p>
         <ul>
-          <li><code>pl-load-lazy</code> This class, if added to the element, will render the binding on initial page load. The default behavior of the callback, shortcode and other server related bindings is to wait for an option to change. (Thie is because they assume a fallback output via PHP). Use this class on the element render on page load instead.</li>
+          <li><code>.render-item</code> Add this class to the item you want to clone.</li>
+          <li><code>plRenderItem( wrapper )</code> This javascript function returns a cloned and visible copy of the binded element with (<code>.render-item</code> class). You can then use this new element to attach your fancy JS.</li>
         </ul>
 
 <?php
 $code = <<<'EOT'
 /**
-*  Example: "Using pl-load-lazy helper"
+*  Example: "Using Render Item Helper"
 *  On page load, use pl-load-lazy class to use an AJAX request to parse the option for shortcodes.
 */
-<div class="pl-load-lazy" data-bind="plshortcode: my_option_key"></div>
+<div class="wrapper">
+  <div class="render-item" data-bind="plshortcode: my_option_key"></div>
+</div>
+
+<script>
+!function ($) {
+
+  // Do this whenever the binding is updated (triggers the update event)
+  $('.wrapper').on('template_updated', function(){
+
+    // Get an clone ready for manipulation
+    readyEl = plRenderedItem( $('.wrapper') )
+
+    readyEl.slider()
+
+  })
+
+}(window.jQuery);
+</script>
 EOT;
 
 echo pl_create_code( $code ); ?>
 
-				<!-- <h3>PHP Fallbacks</h3>
-					<p>PageLines' bindings are driven by javascript (JS). This means they are rendered by the user's browser for display. </p>
-					<p>While you certainly get away with only JS and HTML, if you would like there are places where you may want to initially render content with PHP. There are two reasons for this: 
-						<ol>
-							<li><strong>AJAX / Shortcodes:</strong> User defined text may take some preprocessing. For example, shortcodes will need to be processed by WordPress. As opposed to "lazy-load" this content via AJAX, we just output it at first from PHP.</li>
-							<li><strong>SEO</strong> Although in 2014 Google announced they would be compiling JS for their results, it still may be a concern for people dedicated to amazing SEO. Providing a "static" output on page load ensures that all spiders are seeing the content.</li>
-						</ol>
-					</p> -->
-
-
-
-				
 
 			
       </div> <!-- .section -->
