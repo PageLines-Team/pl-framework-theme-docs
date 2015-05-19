@@ -31,10 +31,14 @@ function pl_add_syntax_highlighting(){
 <?php 
 }
 
-// add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style' );
-// function enqueue_child_theme_style() {
-//     wp_enqueue_style( 'pagelines-framework-child', get_stylesheet_directory_uri() . '/build.css' );
-// }
+add_action( 'wp_enqueue_scripts', 'enqueue_child_scripts' );
+function enqueue_child_scripts() {
+    
+  wp_enqueue_script( 'stickykit', PL_CHILD_URL . '/_plugins/stickykit/stickykit.js' );
+
+  wp_enqueue_script( 'pl-docs', get_stylesheet_directory_uri() . '/script.js' );
+  //  wp_enqueue_style( 'pagelines-framework-child', get_stylesheet_directory_uri() . '/build.css' );
+}
 
 
 

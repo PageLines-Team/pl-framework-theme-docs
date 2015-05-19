@@ -11,17 +11,14 @@
   <div class="doclist row">
   
     <sidebar class="doclist-sidebar col-sm-3">
-      <ul>
-        <li><a href="#">Test</a></li>
-        <li><a href="#">Test</a></li>
-        <li><a href="#">Test</a></li>
-        <li><a href="#">Test</a></li>
-        <li><a href="#">Test</a></li>
+      <ul class="doclist-nav">
+      
       </ul>
     </sidebar>
 
     <div class="doclist-content col-sm-8">    
-      <div class="doclist-content-pad">
+      <div class="doclist-content-pad docnav-scan">
+      
       <div class="heading">
         <h1>Option Bindings</h1>
       </div>
@@ -30,12 +27,14 @@
       
 
         <h2>Introduction</h2>
-          <p>Bindings are an incredibly easy and powerful way of creating real time editing features for your website. They are completely driven by HTML and tied automatically to options you can create a variety of ways. </p>
+          <p>Bindings are a way of syncing your options with what visitors see when they visit your site.</p>
+
+          <p>Bindings are an incredibly easy and powerful way of creating robust editing features; and they are super simple. In fact, they are primarily driven by HTML and tied automatically to options with very little, if any, server side code. </p>
 
         <h2>The Basics</h2>
 
         <h4><code>data-bind</code></h4>
-        <p>PageLines bindings all operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
+        <p>PageLines bindings operate on the <code>data-bind</code> attribute which can be attached to any HTML element within the framework.</p>
 
         <p>The <code>data-bind</code> attribute can have one or more arguments and it ties the element to an option value.</p>
 
@@ -47,9 +46,7 @@ $code = <<<'EOT'
 *  Example: "Basic data-bind"
 *  The example below sets the text of an html element to the value of a option.
 */
-<div data-bind="pltext: my_option_key">
-<?php echo $this->opt('my_option_key');?>
-</div>
+<div data-bind="pltext: my_option_key"></div>
 EOT;
 
   echo pl_create_code( $code ); ?>
@@ -89,6 +86,57 @@ echo pl_create_code( $code ); ?>
    
 
       <h2>Types of Bindings</h2>
+
+      <h3>Basic Bindings</h3>
+
+      <h4>Background Image Binding: <code>plbg</code></h4>
+
+      <p>In order to help you create options for setting background images, we've created the simple <code>plbg</code> binding.</p>
+
+      
+
+<?php
+               
+$code = <<<'EOT'
+<!-- Example "Setting Background Image" -->
+<div class="element pl-bg-cover" data-bind="plbg: option_key">
+
+  <div class="some-content">I love dogs.</div>
+
+</div>
+EOT;
+echo pl_create_code( $code ); ?>
+
+      <p><strong>Note:</strong> This binding will set the <code>background-image</code> CSS rule on the element. Any other styling will need to be handled via CSS. Typically items are set to <code>background-size: cover;</code> which you can apply using the <code>pl-bg-cover</code> helper function..</p>
+
+      <h4>Image Source Binding: <code>plimg</code></h4>
+
+      <p>To set the src value for images use the <code>plimg</code> binding.</p> 
+      
+
+<?php
+               
+$code = <<<'EOT'
+<!-- Example "Setting Image src" -->
+<img src="" data-bind="plimg: option_key" >
+EOT;
+echo pl_create_code( $code ); ?>
+
+      <p>This binding will set the image src on load if the value of the option is not blank. If the value is blank, it will apply a 'js-unset' class which hides the img from view. This gives the user the ability to hide the image by setting it to blank.</p>
+
+      <h4>Text &amp; HTML Binding: <code>pltext</code></h4>
+
+      <p>The basic binding for syncing text and html to the template is the simple <code>pltext</code> binding.</p> 
+
+<?php
+               
+$code = <<<'EOT'
+<!-- Example "Setting Text" -->
+<div class="element" data-bind="pltext: option_key" ></div>
+EOT;
+echo pl_create_code( $code ); ?>
+
+      <p>This binding will set content on load if the value of the option is set. If it isn't set, it will apply a 'js-unset' class which hides the element from view. This gives the user the ability to hide the element.</p>
       
       <h4>Setting Classes: <code>plclassname</code></h4>
 
@@ -125,6 +173,8 @@ EOT;
 
 echo pl_create_code( $code ); ?>
 
+      <h3>Advanced Bindings</h3>
+
       <h4>AJAX Callbacks: <code>plcallback</code></h4>
 
       <p>Often times with bindings you want to do something custom to a template, that requires some work by the server. For this need, we have created the callback binding <code>plcallback</code>.</p>
@@ -132,7 +182,6 @@ echo pl_create_code( $code ); ?>
       <p>The <code>plcallback</code> binding requires some additional PHP to work, but the versatility and power of this binding is unmatched. So let's give it a try...</p>
 
 <?php
-               
 $code = <<<'EOT'
 /**
  *  Example 1
@@ -300,74 +349,68 @@ $code = <<<'EOT'
 EOT;
 echo pl_create_code( $code ); ?>
 
+			<h2>Helpers</h2>
 
-      <h4>Background Image Binding: <code>plbg</code></h4>
+        <h3>Updating Templates With Events</h3>
+        
+        <p>Many of the bindings in PageLines are known as "<i>configuration</i>" bindings, which mean they control the behavior or appearance of a section.</p>
 
-      <p>In order to help you create options for setting background images, we've created the simple <code>plbg</code> binding.</p>
+        <p>As such, when a user changes an option tied to your binding, many times you would like to trigger an "event" that Javascript can use to then rerender or change the element itself or one of its containing elements.</p>
 
-      
+        <p>So as an elegant way of dealing with this problem, PageLines uses the trigger helper classes.</p>
 
-<?php
-               
-$code = <<<'EOT'
-<!-- Example "Setting Background Image" -->
-<div class="element pl-bg-cover" data-bind="plbg: option_key">
+        <ul>
+          <li><code>pl-trigger</code> </li>
+          <li><code>pl-trigger-container</code> </li>
+          
+        </ul>
 
-  <div class="some-content">I love dogs.</div>
-
-</div>
-EOT;
-echo pl_create_code( $code ); ?>
-
-      <p><strong>Note:</strong> This binding will set the <code>background-image</code> CSS rule on the element. Any other styling will need to be handled via CSS. Typically items are set to <code>background-size: cover;</code> which you can apply using the <code>pl-bg-cover</code> helper function..</p>
-
-      <h4>Image Source Binding: <code>plimg</code></h4>
-
-      <p>To set the src value for images use the <code>plimg</code> binding.</p> 
-      <p>This binding will set the image src on load if the value of the option is not blank. If the value is blank, it will apply a 'js-unset' class which hides the img from view. This gives the user the ability to hide the image by setting it to blank.</p>
+        <h3>Controlling Content Loading</h3>
+        <p>To provide the designer some control as to how PageLines bindings behave on page load we've added the pl-lazy-load helper class.</p>
+        <ul>
+          <li><code>pl-load-lazy</code> This class, if added to the element, will render the binding on initial page load. The default behavior of the callback, shortcode and other server related bindings is to wait for an option to change. (Thie is because they assume a fallback output via PHP). Use this class on the element render on page load instead.</li>
+        </ul>
 
 <?php
-               
 $code = <<<'EOT'
-<!-- Example "Setting Image src" -->
-<img src="" data-bind="plimg: option_key" >
+/**
+*  Example: "Using pl-load-lazy helper"
+*  On page load, use pl-load-lazy class to use an AJAX request to parse the option for shortcodes.
+*/
+<div class="pl-load-lazy" data-bind="plshortcode: my_option_key"></div>
 EOT;
+
 echo pl_create_code( $code ); ?>
 
-      <h4>Text &amp; HTML Binding: <code>pltext</code></h4>
+        <h3>Dealing with JS Scripts</h3>
+        <p>To provide the designer some control as to how PageLines bindings behave on page load we've added the pl-lazy-load helper class.</p>
+        <ul>
+          <li><code>pl-load-lazy</code> This class, if added to the element, will render the binding on initial page load. The default behavior of the callback, shortcode and other server related bindings is to wait for an option to change. (Thie is because they assume a fallback output via PHP). Use this class on the element render on page load instead.</li>
+        </ul>
 
+<?php
+$code = <<<'EOT'
+/**
+*  Example: "Using pl-load-lazy helper"
+*  On page load, use pl-load-lazy class to use an AJAX request to parse the option for shortcodes.
+*/
+<div class="pl-load-lazy" data-bind="plshortcode: my_option_key"></div>
+EOT;
 
-			<h2>Helpers and Fallbacks</h2>
+echo pl_create_code( $code ); ?>
 
-				<h3>PHP Option Fallbacks</h3>
+				<!-- <h3>PHP Fallbacks</h3>
 					<p>PageLines' bindings are driven by javascript (JS). This means they are rendered by the user's browser for display. </p>
-					<p>While we certainly could have gotten away with only JS and HTML, above you'll notice that we provided a PHP option within the div as well. There are two reasons for this: 
+					<p>While you certainly get away with only JS and HTML, if you would like there are places where you may want to initially render content with PHP. There are two reasons for this: 
 						<ol>
-							<li><strong>Shortcodes:</strong> All text may take some preprocessing. For example, shortcodes will need to be processed by WordPress. As opposed to "lazy-load" this content via AJAX, we just output it at first from PHP.</li>
+							<li><strong>AJAX / Shortcodes:</strong> User defined text may take some preprocessing. For example, shortcodes will need to be processed by WordPress. As opposed to "lazy-load" this content via AJAX, we just output it at first from PHP.</li>
 							<li><strong>SEO</strong> Although in 2014 Google announced they would be compiling JS for their results, it still may be a concern for people dedicated to amazing SEO. Providing a "static" output on page load ensures that all spiders are seeing the content.</li>
 						</ol>
-					</p>
+					</p> -->
 
-				<h3>Loading Helper CSS Classes</h3>
-				<p>To provide the designer some control as to how PageLines bindings behave on page load. There are two helper classes that allow you to control, specifically, how the binding will behave.</p>
-				<ul>
-					<li><strong>pl-load-lazy</strong> This class, if added to the element, will render the binding on initial page load. Use this if you would like the binding to render on page load (no PHP fallback) and if you're element potentially includes user defined shortcodes or other information requiring the server's help. The framework will "lazy-load" the content automagically.</li>
-					<li><strong>pl-load-html</strong> This class, if added to the element, will render the binding on initial page load but will not send an ajax request looking for shortcodes, etc.. this will load faster.</li>
-					<li><strong>pl-load-wait</strong> This is the default for most bindings. If added to your element, the wait class will wait until an option is changed in order to render. Use this when you have provided a PHP fallback for the option.</li>
-				</ul>
 
-				<h3>Trigger Helper CSS Classes</h3>
-				<p>Many of the bindings in PageLines are known as "configuration" bindings, which mean they control the behavior or appearance of a section.</p>
 
-				<p>As such, when a user changes an option tied to your binding, many times you would like to trigger an "event" that Javascript can use to then rerender or change the element itself or one of its containing elements.</p>
-
-				<p>So as an elegant way of dealing with this problem, PageLines uses the trigger helper classes.</p>
-
-				<ul>
-					<li><strong>pl-trigger</strong> </li>
-					<li><strong>pl-trigger-container</strong> </li>
-					
-				</ul>
+				
 
 			
       </div> <!-- .section -->

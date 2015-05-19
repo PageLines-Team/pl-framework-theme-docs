@@ -48,14 +48,38 @@ Text Domain:  pagelines-child
   border-right: 1px solid #eee;
 }
 .doclist-sidebar ul {
+  padding: 2em 0 0;
   list-style-type: none;
 }
-.doclist-sidebar ul > li > a {
-  color: inherit;
+.doclist-sidebar ul > li a {
+  transition: opacity .2s;
+}
+.doclist-sidebar ul > li a:hover,
+.doclist-sidebar ul > li a:focus {
+  text-decoration: none;
+}
+.doclist-sidebar ul > li > a:active {
+  opacity: .2;
+  transition: opacity 0s;
+}
+.doclist-sidebar ul > li.level1 a {
+  display: none;
+}
+.doclist-sidebar ul > li.level2 a {
   padding: 5px;
   display: block;
-  font-weight: 600;
   line-height: 1.2;
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+.doclist-sidebar ul > li.level3 a {
+  font-size: .8em;
+}
+.doclist-sidebar ul > li.level4 a {
+  color: inherit;
+  font-size: .8em;
+  display: none;
 }
 .doclist-content {
   max-width: 700px;

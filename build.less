@@ -61,14 +61,47 @@ Text Domain:  pagelines-child
   font-size: .9em;
   border-right: 1px solid #eee;
   ul{
+    padding: 2em 0 0;
     list-style-type: none;
     
-    > li > a{
-      color: inherit;
-      padding: 5px;
-      display: block;
-      font-weight: 600;
-      line-height: 1.2;
+    > li {
+      a{
+        transition: opacity .2s;
+      }
+      a:hover, 
+      a:focus{
+        text-decoration: none;
+
+      }
+
+      > a:active{
+        opacity: .2;
+        transition: opacity 0s;
+      }
+
+      
+  
+      &.level1 a{
+        display: none;  
+      }
+
+      
+      &.level2 a{
+        padding: 5px;
+        display: block;      
+        line-height: 1.2;
+        font-weight: 600;
+        margin-top: 5px;
+        font-size: 1.1em;
+       }
+      &.level3 a{
+        font-size: .8em;
+      }
+      &.level4 a{
+        color: inherit;
+        font-size: .8em;
+        display: none;
+      }
     }
   }
 }
