@@ -1,0 +1,20 @@
+.section-docnav {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+.section-docnav .pl-section-pad {
+  padding: 0;
+}
+.docnav a {
+  display: inline-block;
+  padding: 1em;
+  color: inherit;
+  margin: 0 1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.docnav a:hover {
+  opacity: .7;
+}

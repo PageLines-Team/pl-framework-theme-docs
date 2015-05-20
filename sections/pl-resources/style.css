@@ -1,0 +1,50 @@
+.section-pl-resources .pl-section-pad {
+  padding: 0;
+}
+.pl-resources-mast {
+  padding: 7vw;
+  background: #222;
+  color: #eee;
+}
+.pl-resources-mast h1,
+.pl-resources-mast h4 {
+  margin: 0;
+}
+.pl-resources-mast h4 {
+  opacity: .5;
+}
+.pl-resources-content {
+  padding: 5vw 7vw;
+}
+.pl-resources-search {
+  margin-top: 1rem;
+}
+.pl-resources-search input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #666;
+  font-size: 1.3em;
+  padding: .5em 1em;
+}
+.pl-resources-search input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #999;
+  outline: none;
+}
+.pl-resources-search .search-button {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  width: 2em;
+  font-size: 1.6em;
+  opacity: .3;
+  text-align: center;
+}
+.pl-resources-search .search-button:hover {
+  opacity: .5;
+}
+.pl-resources-search .search-button:focus,
+.pl-resources-search .search-button:active {
+  outline: none;
+}

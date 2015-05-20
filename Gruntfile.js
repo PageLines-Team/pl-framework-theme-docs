@@ -82,22 +82,24 @@ module.exports = function(grunt) {
 		    },
 		    less: {
 
-				compileMain: {
-		            src: 'build.less',
-	              dest: 'style.css',
-	                options: {
-	                    strictMath: true,
-	                    sourceMap: false                }
-		        },
-	      compileSections: {
-	                src:    'sections/*/build.less', //'sections/*/build.less',
+			    compileMain: {
+	            src: 'build.less',
+              dest: 'style.css',
+                options: {
+                    strictMath: true,
+                    sourceMap: false                
+                }
+	        
+          }, 
+          compileSections: {
+	                src:    'sections/*/build.less', 
 	                dest:   '',
 	                expand: true,
 	                rename: function(dest, src) {
-	                    return src.replace("build.less", "build.css");
+	                    return src.replace("build.less", "style.css");
 	                },
 
-	            }
+	         }
 		    },
         watch: {
 
