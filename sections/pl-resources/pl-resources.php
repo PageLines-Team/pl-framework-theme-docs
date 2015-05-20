@@ -228,7 +228,7 @@ class PL_Resources extends PageLinesSection {
     <div class="pl-resources-mast">
       <div class="pl-content">
 
-        <h4><?php echo ( ! is_archive() ) ? get_post_type_archive_title() : 'PageLines Development';?></h4>
+        <h4><?php echo ( ! is_archive() ) ? post_type_archive_title('', false) : 'PageLines Development';?></h4>
         <h1><?php (is_archive()) ? post_type_archive_title() : the_title();?></h1>
 
         <form class="pl-resources-search" action="<?php echo home_url( '/' ); ?>" method="get">
@@ -246,10 +246,10 @@ class PL_Resources extends PageLinesSection {
     <div class="pl-resources-content">
       <div class="pl-content">
         <div class="row">
-          <div class="col-sm-9">
+          <div class="resources-entry col-sm-9">
             <div class="pad"><?php echo $this->get_content();?></div>
           </div>
-          <sidebar class="col-sm-3">
+          <sidebar class="resources-sidebar col-sm-3">
             <div class="pad"><?php echo $this->get_sidebar();?></div>
           </sidebar>
         </div>
@@ -290,18 +290,31 @@ class PL_Resources extends PageLinesSection {
         );
         $query = new WP_Query( $args );
 
-        printf( '<h2>%s</h2>', $term->name );
-        printf( '<div class="sub">%s</div>', $term->description );
-        printf( '<i class="icon icon-%s"></i>', $term->meta['icon_slug'] );
+        $icon = ( isset($term->meta['icon_slug']) && $term->meta['icon_slug'] != '' ) ? $term->meta['icon_slug'] : 'pagelines';
+
+        $icon = str_replace( 'icon-', '', $icon );
+
+        ?>
+        <div class="resource-chapter media fix">
+          <div class="chapter-icon img"><i class="icon icon-<?php echo $icon;?>"></i></div>
+          
+          <div class="chapter-items bd">
+          <h3><?php echo $term->name;?></h3>
+          <div class="sub"><?php echo $term->description;?></div>
+          <ul>
+        <?php 
 
         while ( $query->have_posts() ) : $query->the_post(); ?>
          
-        <li class="listing" id="post-<?php the_ID(); ?>">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-        </li>
-         
-        <?php endwhile;
-         
+            <li class="chapter-list-item" id="post-<?php the_ID(); ?>">
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            </li>
+      
+        <?php endwhile; ?>
+          </ul>
+          </div>
+        </div>
+ <?php         
     }
 
   }

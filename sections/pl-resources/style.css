@@ -13,8 +13,12 @@
 .pl-resources-mast h4 {
   opacity: .5;
 }
-.pl-resources-content {
+.pl-resources-content .resources-entry,
+.pl-resources-content .resources-sidebar {
   padding: 5vw 7vw;
+}
+.pl-resources-content .resources-sidebar {
+  border-left: 1px solid #eee;
 }
 .pl-resources-search {
   margin-top: 1rem;
@@ -47,4 +51,43 @@
 .pl-resources-search .search-button:focus,
 .pl-resources-search .search-button:active {
   outline: none;
+}
+.resource-chapter {
+  margin-bottom: 2em;
+}
+.resource-chapter .chapter-icon {
+  font-size: 5em;
+  line-height: 1;
+  opacity: 1;
+  width: 150px;
+  text-align: right;
+}
+.resource-chapter .chapter-items {
+  padding: .5em;
+}
+.resource-chapter .chapter-items h3 {
+  margin: 0;
+}
+.resource-chapter .chapter-items .sub {
+  opacity: .5;
+}
+.resource-chapter .chapter-items ul {
+  padding: 0;
+  margin: 1em 0;
+  list-style-type: none;
+}
+.resource-chapter .chapter-items ul > li {
+  margin-bottom: 1em;
+}
+.resource-chapter .chapter-items .chapter-list-item {
+  list-style-type: none;
+}
+.resource-chapter .chapter-items .chapter-list-item a {
+  display: block;
+  border: 1px solid #eee;
+  padding: .8em 1.5em;
+}
+.resource-chapter .chapter-items .chapter-list-item a:hover {
+  text-decoration: none;
+  border: 1px solid #ccc;
 }

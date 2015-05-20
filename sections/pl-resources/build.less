@@ -16,9 +16,13 @@
 }
 
 .pl-resources-content{
-  padding: 5vw 7vw;
-  .pad{
-   
+  .resources-entry, 
+  .resources-sidebar{
+    padding: 5vw 7vw;
+  }
+  
+  .resources-sidebar{
+    border-left: 1px solid #eee;
   }
 }
 
@@ -54,3 +58,46 @@
     }
   }
 } 
+
+.resource-chapter{
+  margin-bottom: 2em;
+  .chapter-icon{
+    font-size: 5em;
+    line-height: 1;
+    opacity: 1;
+    width: 150px;
+    text-align: right;
+  }
+  .chapter-items{
+    padding: .5em;
+    h3{
+      margin: 0;
+    }
+    .sub{
+      opacity: .5;
+    }
+    ul{
+      padding: 0;
+      margin: 1em 0;
+      list-style-type: none;
+      > li{
+        margin-bottom: 1em;
+      }
+    }
+    .chapter-list-item{
+      list-style-type: none;
+      a{
+        display: block;
+        border: 1px solid #eee;
+        padding: .8em 1.5em;
+        &:hover{
+          text-decoration: none;
+          border: 1px solid #ccc;
+        }
+      }
+    }
+  }
+}
+
+
+
