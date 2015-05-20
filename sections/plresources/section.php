@@ -19,4 +19,5 @@ class PL_Resources extends PageLinesSection {
     
     
   }
+}
 
