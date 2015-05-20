@@ -320,6 +320,29 @@ class PL_Resources extends PageLinesSection {
   }
 
   function get_sidebar(){
-    return '';
+    ob_start(); 
+
+    ?>
+    <div class="widget">
+      <h3 class="widgettitle">Chapters</h3>
+      <ul class="resource-nav">
+
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+        <li><a>Whatever</a></li>
+      </ul>
+    </div>
+    <?php 
+
+    return ob_get_clean();
   }
+
+
+
+
+
 }
