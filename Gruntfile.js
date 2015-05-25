@@ -3,6 +3,7 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
     var pkg = grunt.file.readJSON('package.json');
+		var slug = process.cwd().substr(process.cwd().lastIndexOf('/') + 1);
 
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
@@ -14,7 +15,7 @@ module.exports = function(grunt) {
             {
               expand: true,
               src: [ '**', pkg.copyIgnores ],
-              dest: 'src/' + pkg.slug + '/',
+              dest: 'src/' + slug + '/',
               filter: 'isFile'
             },
           ],
@@ -24,42 +25,13 @@ module.exports = function(grunt) {
         main: {
           options: {
             mode: 'zip',
-            archive: 'dist/' + pkg.slug + '.zip'
+            archive: 'dist/' + slug + '.zip'
           },
           expand: true,
           cwd: 'src/',
           src: ['**']
         }
       },
-      "github-release": {
-        options: {
-          auth: {
-            user: grunt.option('gh_user'),
-            pass: grunt.option('gh_pass')
-          },
-          repository: 'PageLines-Team/' + pkg.slug,
-          release: {
-            tag_name: 'latest',
-            name: 'Latest',
-            body: 'Latest Build',
-            draft: false,
-            prerelease: false
-          }
-        },
-        files: {
-          'src': [ 'dist/' + pkg.slug + '.zip' ]
-        },
-      },
-
-    shell: {
-            options: {
-                stderr: false,
-                failOnError: false
-            },
-            remove_latest_tag: {
-                command: 'git push origin :latest'
-            }
-        },
 		    cssmin: {
 		      options: {
 		        shorthandCompacting: false,
@@ -118,25 +90,8 @@ module.exports = function(grunt) {
                     nospawn: true,
                 }
             }
-          },
-					'sftp-deploy': {
-					  build: {
-					    auth: {
-					      host: 'deploy.pagelines.io',
-					      port: 22,
-					      authKey: {
-					      	'username': grunt.option('ssh_user'),
-									'password': grunt.option('ssh_pass'),
-					      }
-					    },
-					    cache: 'sftpCache.json',
-					    src: 'dist',
-					    dest: 'www/dev-connect-files',
-					    serverSep: '/',
-					    concurrency: 4,
-					    progress: true
-					  }
-					}
+          }
+
 
     });
 
@@ -147,9 +102,6 @@ module.exports = function(grunt) {
       'clean',          // clean the folders
 			'less',						// build that less
       'copy',           // copy the files we need
-      'compress',       // create out zip
-			'sftp-deploy',		// make zip
-      'shell',          // delete latest release
-      'github-release',  // create latest release
+      'compress'       // create out zip
     ]);
 }
