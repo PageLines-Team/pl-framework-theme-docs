@@ -44,7 +44,7 @@
       $('.doclist-nav').html( list )
 
       /** Stick it  */
-      $('.doclist-nav').stick_in_parent()
+      $('.doclist-nav').closest('.js-stickaroo').stick_in_parent()
 
       /** Better anchor scrolling */
       $('.doclist-nav a').on( 'click', function(e){
@@ -54,7 +54,7 @@
          var offset = $(id).offset();
       
          $("html, body").animate({
-           scrollTop: offset.top - 40
+           scrollTop: offset.top - 50
          }, 100);
       })
 

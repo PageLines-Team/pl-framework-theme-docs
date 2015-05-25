@@ -83,6 +83,7 @@
 }
 .resource-chapter .chapter-items h3 {
   margin: 0;
+  font-weight: 500;
 }
 .resource-chapter .chapter-items .sub {
   opacity: .5;
@@ -100,8 +101,9 @@
 }
 .resource-chapter .chapter-items .chapter-list-item a {
   display: block;
-  border: 1px solid #eee;
+  border: 1px solid #ddd;
   padding: .8em 1.5em;
+  line-height: 1;
 }
 .resource-chapter .chapter-items .chapter-list-item a:hover {
   text-decoration: none;
