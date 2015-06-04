@@ -1,0 +1,266 @@
+.pl-page-selector {
+  position: relative;
+  text-transform: capitalize;
+}
+.pl-page-selector .selector-content {
+  white-space: nowrap;
+  margin: 2em 0 .5em;
+}
+.pl-page-selector .layout-selector-content {
+  padding: 0;
+  margin: 0;
+}
+.pl-page-selector .layout-selector-content ul {
+  margin: 0;
+  padding: 0;
+}
+.pl-page-selector .layout-selector-content ul > li {
+  display: block;
+}
+.pl-page-selector .layout-selector-content ul > li ul {
+  display: none;
+}
+.pl-page-selector .layout-selector-content ul > li ul li > span.the-page {
+  padding-left: 50px;
+}
+.pl-page-selector .layout-selector-content ul > li ul > li.layout-item:nth-child(odd) > span.the-page {
+  background: #f7f7f7;
+}
+.pl-page-selector .layout-selector-content ul > li.layout-item:nth-child(even) > span.the-page {
+  background: #fafafa;
+}
+.pl-page-selector .layout-selector-content span.the-page {
+  padding: 6px 1em;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  min-height: 18px;
+  line-height: 18px;
+  clear: both;
+  font-weight: 600;
+}
+.pl-page-selector .layout-selector-content span.the-page .make-subtle {
+  opacity: .3;
+}
+.pl-page-selector .layout-selector-content span.the-page .the-page-title:hover {
+  text-decoration: underline;
+}
+.pl-page-selector .layout-selector-content .children-indicator {
+  margin-right: 2px;
+  color: #777;
+  display: none;
+}
+.pl-page-selector .layout-selector-content .children-indicator > .icon-caret-down {
+  display: none;
+}
+.pl-page-selector .layout-selector-content li.has-children > .the-page > .children-indicator {
+  display: inline-block;
+}
+.pl-page-selector .layout-selector-content li.has-children > span.layout-open > .children-indicator > .icon-caret-right {
+  display: none;
+}
+.pl-page-selector .layout-selector-content li.has-children > span.layout-open > .children-indicator > .icon-caret-down {
+  display: inline-block;
+}
+.pl-page-selector span.load-more-layouts {
+  display: block;
+  text-align: center;
+  padding: 7px;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.pl-page-selector span.load-more-layouts:hover {
+  background: #f7f7f7;
+}
+.pl-page-selector span.load-more-layouts:active {
+  background: #eee;
+}
+div#layout-selector-select.page-selector-visible span#layout-selector-select-content-arrow {
+  background: rgba(255, 255, 255, 0.3);
+}
+div.layout-selector-content ul ul > li.layout-item span.layout {
+  padding-left: 3em;
+}
+div.layout-selector-content ul ul ul > li.layout-item span.layout {
+  padding-left: 4em;
+}
+div.layout-selector-content ul ul ul ul > li.layout-item span.layout {
+  padding-left: 5em;
+}
+div.layout-selector-content ul ul ul ul ul > li.layout-item span.layout {
+  padding-left: 6em;
+}
+div.layout-selector-content ul ul ul ul ul ul > li.layout-item span.layout {
+  padding-left: 7em;
+}
+div.layout-selector-content li.layout-item {
+  /* Change position of buttons for pages vs templates */
+}
+div.layout-selector-content li.layout-item span.layout span.status {
+  float: left;
+  margin: 0 0 0 10px;
+  /* Hide all statuses by default */
+  display: none;
+}
+div.layout-selector-content li.layout-item span.layout-page span.layout-selector-button {
+  right: 10px;
+}
+div.layout-selector-content li.layout-item span.layout-template span.assign-template {
+  right: 60px;
+}
+div.layout-selector-content li.layout-item span.layout-template span.delete-template {
+  text-indent: -9999px;
+  /* Hide the delete template button by default */
+  display: none;
+  cursor: pointer;
+  width: 15px;
+  height: 14px;
+  margin: 1px 0 -3px 6px;
+  color: rgba(0, 0, 0, 0.35);
+  float: left;
+  transition: color 100ms linear;
+}
+div.layout-selector-content li.layout-item span.layout-template span.delete-template:before {
+  line-height: 16px;
+  float: left;
+}
+div.layout-selector-content li.layout-item span.layout-template span.delete-template:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+/* Style buttons and hide them */
+span.layout-selector-button {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 11px;
+}
+/* Load more button */
+/* Hide the revert button in the design mode. */
+body.visual-editor-mode-design span.revert {
+  display: none !important;
+}
+/* Conditionals */
+/* Hierarchial indicators */
+div.layout-selector-content {
+  /* Show edit button on all layouts (including templates) except for layouts that have a template assigned to them and selected layouts */
+  /* Show the template-specific assign template button for templates that are not selected */
+  /* Customized layouts: show the customized status flag */
+  /* Layout No Edit */
+  /* Layout With Customized Children */
+  /* Info Layout Item */
+}
+div.layout-selector-content span.layout:not(.layout-open) ~ span.load-more-layouts,
+div.layout-selector-content li:not(.has-children) > span.load-more-layouts {
+  display: none !important;
+}
+div.layout-selector-content li.has-children > span.layout-open ~ ul {
+  display: block;
+}
+div.layout-selector-content li.layout-item:not(.layout-item-template-used):not(.layout-selected) > span.layout:hover span.edit {
+  display: block;
+}
+div.layout-selector-content li.layout-item:not(.layout-selected) > span.layout-template:hover span.assign-template {
+  display: block;
+}
+div.layout-selector-content li.layout-item-customized > span.layout span.status-customized {
+  display: block;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout {
+  /* Layouts using a template: show status template flag, hide edit button, hide revert button, and show the remove template button */
+  /* Hide it on hover too */
+}
+div.layout-selector-content li.layout-item-template-used > span.layout span.edit {
+  display: none;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout span.revert {
+  display: none;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout span.status-template {
+  display: block;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout:hover span.edit {
+  display: none;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout:hover span.revert {
+  display: none;
+}
+div.layout-selector-content li.layout-item-template-used > span.layout:hover span.remove-template {
+  display: block;
+}
+div.layout-selector-content li.layout-selected > span.layout {
+  /* Hide the buttons */
+}
+div.layout-selector-content li.layout-selected > span.layout strong {
+  color: #222 !important;
+  font-weight: bold;
+}
+div.layout-selector-content li.layout-selected > span.layout span.status {
+  display: none;
+}
+div.layout-selector-content li.layout-selected > span.layout span.status-currently-editing {
+  display: block;
+}
+div.layout-selector-content li.layout-selected > span.layout span.layout-selector-button {
+  display: none;
+}
+div.layout-selector-content li.layout-selected > span.layout:hover span.layout-selector-button {
+  display: none;
+}
+div.layout-selector-content li.layout-selected {
+  /* Selected layout that's customized: show revert button */
+  /* Selected layout that's using a template: show remove template button */
+  /* Selected and hovered template: show delete button */
+  /* Rename */
+}
+div.layout-selector-content li.layout-selected.layout-item-customized > span.layout span.revert {
+  display: block;
+}
+div.layout-selector-content li.layout-selected.layout-item-template-used > span.layout span.remove-template {
+  display: block;
+}
+div.layout-selector-content li.layout-selected li.layout-selected > span.layout-template span.delete-template,
+div.layout-selector-content li.layout-selected li.layout-item > span.layout-template:hover span.delete-template {
+  display: block;
+}
+div.layout-selector-content li.layout-selected > span.layout-template span.rename-template,
+div.layout-selector-content li.layout-selected > span.layout-template:hover span.rename-template {
+  display: block;
+}
+div.layout-selector-content li.layout-item-no-edit > span.layout strong {
+  color: #555;
+}
+div.layout-selector-content li.layout-item-no-edit > span.layout span.layout-selector-button {
+  display: none !important;
+}
+div.layout-selector-content li.layout-item-no-edit.has-children > span.layout:before {
+  color: #555;
+}
+div.layout-selector-content li.layout-item.has-customized-children {
+  position: relative;
+  clear: both;
+}
+div.layout-selector-content li.layout-item > span.layout-has-customized-children {
+  display: none;
+  font-size: 8px;
+  margin: 0;
+  font-weight: 200;
+  top: 12px;
+  left: 9px;
+  position: absolute;
+  color: #0EA8C7;
+  z-index: 2;
+  cursor: help;
+}
+div.layout-selector-content li.layout-item.has-customized-children > span.layout-has-customized-children {
+  display: inline;
+}
+div.layout-selector-content li.info-layout-item span.layout strong,
+div.layout-selector-content div.layout-selector-content li.info-layout-item span.layout strong:hover {
+  color: #888;
+  cursor: default;
+}
