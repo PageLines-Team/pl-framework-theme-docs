@@ -1,17 +1,14 @@
 <?php
 /*
   
-  Plugin Name:    Resources
+  Plugin Name:    PL Resources
   Description:    Documentation and resources section
 
   Author:         PageLines
   Author URI:     http://www.pagelines.com
 
   Version:        1.0.0
-  PageLines:      true
-  Section:        true
-
-  Class Name:     PL_Resources
+  PageLines:      PL_Resources
   Filter:         advanced
 
 */

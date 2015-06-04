@@ -17,7 +17,7 @@ $opts = array(
 	),
 	);
 
-pl_add_sync_settings( $opts );
+pl_add_static_settings( $opts );
 
 
 get_header(); ?>
