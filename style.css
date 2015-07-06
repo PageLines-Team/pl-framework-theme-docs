@@ -3,17 +3,14 @@
 Theme Name:   PageLines Child
 Theme URI:    http://www.pagelines.com/
 
-Description:  A documentation oriented child theme for PageLines.
+Description:  A documentation oriented child theme for PageLines Framework.
 
 Author:       PageLines
 Author URI:   http://www.pagelines.com
-Template:     pagelines-framework
-Version:      1.0.0
+Template:     pl-framework
+Version:      5.0.0
 
-License:      GNU General Public License v2 or later
-License URI:  http://www.gnu.org/licenses/gpl-2.0.html
-
-Text Domain:  pagelines-child
+Text Domain:  pagelines
 
 */
 .banner-board {
