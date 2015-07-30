@@ -12,13 +12,13 @@
 
 */
 
-class NavBanner extends PageLinesSection {
+class NavBanner extends PL_Section {
 
   /**
    *  Standard method for setting defaults for standard options.
    */
   function section_defaults(){
-    return array( 'effects' => 'pl-effect-window-height', 'theme' => 'pl-scheme-dark', 'navi_logo' => '[pl_image_url]/leaf-white.png' );
+    return array( 'effects' => 'pl-effect-window-height', 'theme' => 'pl-scheme-light', 'navi_logo' => '[pl_image_url]/leaf-white.png' );
   }
 
   function section_template(){

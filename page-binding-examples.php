@@ -13,22 +13,22 @@ $opts = array(
             'key'     => 'button_size',
             'type'    => 'select',
             'label'   => __( 'Button Size', 'pagelines' ),
-            'default'  => 'btn-lg',
+            'default'  => 'pl-btn-lg',
             'opts'    => array(
-              'btn-lg'     => array( 'name' => 'Large' ),
-              'btn-sm'     => array( 'name' => 'Small' ),
-              'btn-xs'     => array( 'name' => 'Extra Small' ),
+              'pl-btn-lg'     => array( 'name' => 'Large' ),
+              'pl-btn-sm'     => array( 'name' => 'Small' ),
+              'pl-btn-xs'     => array( 'name' => 'Extra Small' ),
             ),
           ), 
           array(
             'key'       => 'button_color',
             'type'      => 'select',
-            'default'   => 'btn-default',
+            'default'   => 'pl-btn-default',
             'label'     => __( 'Button Color', 'pagelines' ),
             'opts'      => array(
-              'btn-default'     => array( 'name' => 'Default' ),
-              'btn-primary'     => array( 'name' => 'Blue' ),
-              'btn-warning'     => array( 'name' => 'Red' ),
+              'pl-btn-default'     => array( 'name' => 'Default' ),
+              'pl-btn-primary'     => array( 'name' => 'Blue' ),
+              'pl-btn-warning'     => array( 'name' => 'Red' ),
             ),
           ), 
       ),
@@ -54,16 +54,16 @@ pl_add_static_settings( $opts );
 
 ?>
 
-<div class="pl-content">
+<div class="pl-content-area">
 
 
   <div class="docs-example">
 
     <h3>Classname Binding</h3>
 
-    <p><span class="btn btn-default" data-bind="plclassname: button_size">Button With One Class: Size</span></p>
+    <p><span class="pl-btn pl-btn-default" data-bind="plclassname: button_size">Button With One Class: Size</span></p>
 
-    <p><span  class="btn" data-bind="plclassname: [ button_size(), button_color() ]">Button With Two Classes: Size &amp; Color</span></p>
+    <p><span  class="pl-btn" data-bind="plclassname: [ button_size(), button_color() ]">Button With Two Classes: Size &amp; Color</span></p>
 
   </div>
 

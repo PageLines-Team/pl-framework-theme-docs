@@ -29,7 +29,7 @@ pl_add_static_settings( $opts );
 
 $navbanner = [
 		'effects'								=> 'pl-effect-window-height',
-		'theme'									=> 'pl-scheme-dark'
+		'theme'									=> 'pl-scheme-light'
 	];
 
 $default_banner = array(
@@ -40,7 +40,7 @@ $default_banner = array(
 		'button_primary_text'		=> 'Read the Docs',
 		'button_primary_style'	=> 'primary',
 		'effects'								=> 'pl-effect-window-height',
-		'theme'									=> 'pl-scheme-dark'
+		'theme'									=> 'pl-scheme-light'
 
 	);
 
@@ -97,17 +97,5 @@ $default_boxes = [
 
 <?php echo do_shortcode( '[plsection section="slider"]');?>
 
-
-<div  class="pl-content">
-	<div class="row-flex">
-	a
-	sdf
-	asdf
-	a
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
-	</div>
-</div>
 
 

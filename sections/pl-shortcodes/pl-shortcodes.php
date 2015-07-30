@@ -60,14 +60,14 @@ if( ! class_exists( 'PL_Custom_Less' )){
     function css_head(){
       ?>
       <style id="pl-custom-css">
-      <?php echo pl_setting('custom_css');?>
+      <?php echo pl_user_setting('custom_css');?>
       </style>
       <?php 
     }
 
     function custom_less(){
 
-      printf('<script type="text/plain" id="pl-custom-less">%s</script>', pl_setting('custom_less') );
+      printf('<script type="text/plain" id="pl-custom-less">%s</script>', pl_user_setting('custom_less') );
 
     }
 
@@ -77,8 +77,8 @@ if( ! class_exists( 'PL_Custom_Less' )){
 
         $styles = $data['styles'];
 
-        pl_setting_update( 'custom_css',  $styles['css'] );
-        pl_setting_update( 'custom_less',   $styles['less'] );
+        pl_user_setting_update( 'custom_css',  $styles['css'] );
+        pl_user_setting_update( 'custom_less',   $styles['less'] );
 
       }
 

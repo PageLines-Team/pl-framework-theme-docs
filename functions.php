@@ -26,15 +26,15 @@
 add_action( 'wp_head', 'pl_add_syntax_highlighting' );
 function pl_add_syntax_highlighting(){
 ?>
-  <link rel="stylesheet" href="<?php echo PL_CHILD_URL;?>/_plugins/prism/prism.css">
-  <script src="<?php echo PL_CHILD_URL;?>/_plugins/prism/prism.js"></script>
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri();?>/_plugins/prism/prism.css">
+  <script src="<?php echo get_stylesheet_directory_uri();?>/_plugins/prism/prism.js"></script>
 <?php 
 }
 
 add_action( 'wp_enqueue_scripts', 'enqueue_child_scripts' );
 function enqueue_child_scripts() {
     
-  wp_enqueue_script( 'stickykit', PL_CHILD_URL . '/_plugins/stickykit/stickykit.js' );
+  wp_enqueue_script( 'stickykit', get_stylesheet_directory_uri() . '/_plugins/stickykit/stickykit.js' );
 
   wp_enqueue_script( 'pl-docs', get_stylesheet_directory_uri() . '/script.js' );
   //  wp_enqueue_style( 'pagelines-framework-child', get_stylesheet_directory_uri() . '/build.css' );

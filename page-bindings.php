@@ -10,13 +10,13 @@
 
   <div class="doclist row">
   
-    <sidebar class="doclist-sidebar col-sm-3">
+    <sidebar class="doclist-sidebar pl-col-sm-3">
       <ul class="doclist-nav">
       
       </ul>
     </sidebar>
 
-    <div class="doclist-content col-sm-8">    
+    <div class="doclist-content pl-col-sm-8">    
       <div class="doclist-content-pad docnav-scan">
       
       <div class="heading">
@@ -65,7 +65,7 @@ $code = <<<'EOT'
  *  Example: "Using logic and ()"
  *  The example below shows how to use logical expressions with () in a data-bind.
  */
-<div class="col-sm-12" data-bind="class: (cols()) ? 'col-sm-' + cols() : 'col-sm-12'">
+<div class="pl-col-sm-12" data-bind="class: (cols()) ? 'pl-col-sm-' + cols() : 'pl-col-sm-12'">
   ...some content... 
 </div>
 
@@ -85,7 +85,7 @@ echo pl_create_code( $code ); ?>
             <p>Before you do, however, it is important to note that Knockout bindings don't take into account SEO and related JS events while PageLines bindings (documented below) were created and optimized for website and presentation.</p>
 
 
-            <p><a class="btn btn-primary btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
+            <p><a class="pl-btn pl-btn-primary pl-btn-lg" href="http://knockoutjs.com/documentation/introduction.html" target="_blank">View Knockout JS Docs</a></p>
    
 
       <h2>Types of Bindings</h2>
@@ -209,7 +209,7 @@ function my_function_name( $response, $data ){
   $size = $data['value']['size'];
   $color = $data['value']['color'];
 
-  $response[ 'template' ] = sprintf('<button class="btn %s %s">My Button</button>', $size, $color);
+  $response[ 'template' ] = sprintf('<button class="pl-btn %s %s">My Button</button>', $size, $color);
 
   return $response;
 }
@@ -244,7 +244,7 @@ $code = <<<'EOT'
  */
 
 // Create Section
-class My_Awesome_section extends PageLinesSection{
+class My_Awesome_Section extends PL_Section{
 
   // Create callback hook
   function section_persistent(){
@@ -336,7 +336,7 @@ $code = <<<'EOT'
 ?>
 <script type="text/html" id="item-template">
 
-<a class="item" data-bind="class: 'col-sm-' + $root.ibox_cols(), plhref: link" >
+<a class="item" data-bind="class: 'pl-col-sm-' + $root.ibox_cols(), plhref: link" >
   <div class="item-text media-right">
      <h3 class="item-title" data-bind="pltext: title"></h3>
      <div class="item-desc" data-bind="pltext: text"></div>

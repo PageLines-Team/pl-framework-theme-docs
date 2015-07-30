@@ -12,15 +12,8 @@
 
 */
 
-class DocNav extends PageLinesSection {
+class DocNav extends PL_Section {
 
-  function section_styles(){
-
-
-   // pl_enqueue_script( 'pl-scrollup', $this->base_url.'/scrollupbar.js',    array( 'jquery' ), pl_get_cache_key(), true );
-    //pl_enqueue_script( 'pl-docnav',   $this->base_url.'/docnav.js',         array( 'jquery' ), pl_get_cache_key(), true );
-
-  }
 
   function section_template(){
 

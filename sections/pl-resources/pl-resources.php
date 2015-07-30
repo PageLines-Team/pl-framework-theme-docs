@@ -193,12 +193,12 @@ $pl_resources_config = new PL_Resources_Config();
  * Only do the rest of PageLines Framework is activated
  * 
  */
-if( ! class_exists( 'PageLinesSection' ) )
+if( ! class_exists( 'PL_Section' ) )
   return;
 
 
 
-class PL_Resources extends PageLinesSection {
+class PL_Resources extends PL_Section {
 
   function section_persistent(){
 
@@ -228,7 +228,7 @@ class PL_Resources extends PageLinesSection {
     ?>
 
     <div class="pl-resources-mast">
-      <div class="pl-content">
+      <div class="pl-content-area">
         <h4><a href="<?php echo get_post_type_archive_link( get_post_type( ) );?>"><?php echo ( ! is_archive() ) ? $pt_name : 'PageLines Framework';?></a></h4>
         <h1><?php (is_archive()) ? post_type_archive_title() : the_title();?></h1>
 
@@ -238,19 +238,19 @@ class PL_Resources extends PageLinesSection {
               <i class="icon icon-search"></i>
             </button>
             <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="Search Documentation..." />
-            <?php echo ( pl_is_workarea_iframe() ) ? '<input type="hidden" name="workarea-iframe" value="1"/>' : ''; ?>
+            <?php echo ( pl_is_workarea_iframe() ) ? '<input type="hidden" name="iframe" value="1"/>' : ''; ?>
             <input type="hidden" value="<?php echo $this->pt;?>" name="post_type" id="post_type" />
           </fieldset>
         </form>
       </div>
     </div>
     <div class="pl-resources-content">
-      <div class="pl-content">
+      <div class="pl-content-area">
         <div class="row">
-          <div class="resources-entry col-sm-9">
+          <div class="resources-entry pl-col-sm-9">
             <div class="pad docnav-scan"><?php echo $this->get_content();?></div>
           </div>
-          <sidebar class="resources-sidebar col-sm-3">
+          <sidebar class="resources-sidebar pl-col-sm-3">
             <div class="pad js-stickaroo"><?php echo $this->get_sidebar();?></div>
           </sidebar>
         </div>

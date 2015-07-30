@@ -22,11 +22,11 @@ pl_add_static_settings( $opts );
 
 get_header(); ?>
 
-<div  class="pl-content">
-	<div class="row">
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
-		<div class="col-sm-4">123</div>
+<div  class="pl-content-area">
+	<div class="pl-row">
+		<div class="pl-col-sm-4">123</div>
+		<div class="pl-col-sm-4">123</div>
+		<div class="pl-col-sm-4">123</div>
 	</div>
 </div>
 
