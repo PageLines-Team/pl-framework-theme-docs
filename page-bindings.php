@@ -391,8 +391,8 @@ echo pl_create_code( $code ); ?>
 
         <p>To resolve this, we've created a simple rendering function you can use to clone your binded (and hidden) html, and then attach your stylized JS to the clone.</p>
         <ul>
-          <li><code>.render-item</code> Add this class to the item you want to clone.</li>
-          <li><code>plRenderItem( wrapper )</code> This javascript function returns a cloned and visible copy of the binded element with (<code>.render-item</code> class). You can then use this new element to attach your fancy JS.</li>
+          <li><code>.pl-render-item</code> Add this class to the item you want to clone.</li>
+          <li><code>plRenderItem( wrapper )</code> This javascript function returns a cloned and visible copy of the binded element with (<code>.pl-render-item</code> class). You can then use this new element to attach your fancy JS.</li>
         </ul>
 
 <?php
@@ -402,7 +402,7 @@ $code = <<<'EOT'
 *  On page load, use pl-load-lazy class to use an AJAX request to parse the option for shortcodes.
 */
 <div class="wrapper">
-  <div class="render-item" data-bind="plshortcode: my_option_key"></div>
+  <div class="pl-render-item" data-bind="plshortcode: my_option_key"></div>
 </div>
 
 <script>
