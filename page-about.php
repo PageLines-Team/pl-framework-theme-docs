@@ -11,7 +11,7 @@ $opts = array(
 		'col'		=> 1,
 		'type'		=> 'edit_post',
 		'title'		=> __( 'Edit Post Content', 'pagelines' ),
-		'label'		=>	__( '<i class="icon icon-pencil"></i> Edit Post Info', 'pagelines' ),
+		'label'		=>	__( '<i class="pl-icon pl-icon-pencil"></i> Edit Post Info', 'pagelines' ),
 		'help'		=> __( 'This section uses WordPress posts. Edit post information using WordPress admin.', 'pagelines' ),
 		'classes'	=> 'btn-primary'
 	),

@@ -122,7 +122,7 @@
 
       inputs += '<label>Enter Custom LESS/CSS Here</label>'
       
-      inputs += sprintf( '<textarea class="form-control custom-less pl-code-editor" data-mode="less" placeholder="#site{ // Rules Here }">%s</textarea>', value )
+      inputs += sprintf( '<textarea class="pl-form-control custom-less pl-code-editor" data-mode="less" placeholder="#site{ // Rules Here }">%s</textarea>', value )
       inputs += '<div class="less-errors">No Errors</div>'
     
       return sprintf('<div class="form-group">%s</div>', inputs)

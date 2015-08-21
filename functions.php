@@ -78,7 +78,7 @@ function pl_list_tax( $response, $data ){
 
   if( is_array( $the_terms ) ){
     foreach( $the_terms as $term ){
-        $html .= sprintf('<span><i class="icon icon-tag" style="opacity: .2;"></i> %s</span> ', $term->name);
+        $html .= sprintf('<span><i class="pl-icon pl-icon-tag" style="opacity: .2;"></i> %s</span> ', $term->name);
     }
   }
 

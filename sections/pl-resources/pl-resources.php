@@ -235,7 +235,7 @@ class PL_Resources extends PL_Section {
         <form class="pl-resources-search" action="<?php echo home_url( '/' ); ?>" method="get">
           <fieldset>
             <button type="submit" class="search-button" onClick="submit()">
-              <i class="icon icon-search"></i>
+              <i class="pl-icon pl-icon-search"></i>
             </button>
             <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="Search Documentation..." />
             <?php echo ( pl_is_workarea_iframe() ) ? '<input type="hidden" name="iframe" value="1"/>' : ''; ?>
@@ -318,7 +318,7 @@ class PL_Resources extends PL_Section {
 
         $icon = ( isset($term->meta['icon_slug']) && $term->meta['icon_slug'] != '' ) ? $term->meta['icon_slug'] : 'pagelines';
 
-        $icon = str_replace( 'icon-', '', $icon );
+        $icon = str_replace( 'pl-icon-', '', $icon );
 
         ?>
         <div class="resource-chapter media fix">

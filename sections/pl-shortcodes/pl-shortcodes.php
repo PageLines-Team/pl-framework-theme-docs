@@ -39,7 +39,7 @@ if( ! class_exists( 'PL_Custom_Less' )){
 
       pl_add_ab_menu( array(
         'id'      => 'pl-ab-code',
-        'title'   => '<i class="icon icon-code"></i> Custom CSS',
+        'title'   => '<i class="pl-icon pl-icon-code"></i> Custom CSS',
         'rel'     => 'plCode',
         'href'    => add_query_arg('pl_tool', 'plCode', PL()->urls->editor )
       ));
@@ -54,7 +54,7 @@ if( ! class_exists( 'PL_Custom_Less' )){
 
     function scripts(){
 
-      wp_enqueue_script( $this->id, $this->url . '/script.js', array('jquery'), pl_get_cache_key(), true );
+      wp_enqueue_script( $this->id, $this->url . '/script.js', array('jquery'), pl_cache_key(), true );
     }
 
     function css_head(){
