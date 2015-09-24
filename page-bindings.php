@@ -352,7 +352,7 @@ $code = <<<'EOT'
 EOT;
 echo pl_create_code( $code ); ?>
 
-			<h2>Helpers</h2>
+      <h2>Helpers</h2>
 
         <h3>Updating Templates With Events</h3>
         
@@ -425,7 +425,7 @@ EOT;
 echo pl_create_code( $code ); ?>
 
 
-			
+      
       </div> <!-- .section -->
 
       </div>
