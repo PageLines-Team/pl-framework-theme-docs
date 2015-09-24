@@ -1,0 +1,92 @@
+/*
+
+Theme Name:   PageLines Child
+Theme URI:    http://www.pagelines.com/
+
+Description:  A documentation oriented child theme for PageLines Framework.
+
+Author:       PageLines
+Author URI:   http://www.pagelines.com
+Template:     pl-framework
+Version:      5.0.0
+
+Text Domain:  pagelines
+
+*/
+.banner-board {
+  padding: 200px;
+}
+.docs-example {
+  padding: 60px;
+  border: 1px solid #ddd;
+  text-align: center;
+  margin-bottom: 2em;
+}
+.docs-container {
+  background: #f7f7f7;
+  padding: 2em;
+  text-align: left;
+  display: inline-block;
+}
+.doclist-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+.doclist .heading,
+.doclist .section {
+  padding: 2em 0;
+}
+.doclist .heading,
+.doclist .section {
+  border-bottom: 1px solid #eee;
+}
+.doclist pre[class*="language-"],
+.doclist code[class*="language-"] {
+  font-size: .85em;
+  line-height: 1.3em;
+}
+.doclist-sidebar {
+  text-align: right;
+  font-size: .9em;
+  border-right: 1px solid #eee;
+}
+.doclist-sidebar ul {
+  padding: 2em 0 0;
+  list-style-type: none;
+}
+.doclist-sidebar ul > li a {
+  transition: opacity .2s;
+}
+.doclist-sidebar ul > li a:hover,
+.doclist-sidebar ul > li a:focus {
+  text-decoration: none;
+}
+.doclist-sidebar ul > li > a:active {
+  opacity: .2;
+  transition: opacity 0s;
+}
+.doclist-sidebar ul > li.level1 a {
+  display: none;
+}
+.doclist-sidebar ul > li.level2 a {
+  padding: 5px;
+  display: block;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+.doclist-sidebar ul > li.level3 a {
+  font-size: .8em;
+}
+.doclist-sidebar ul > li.level4 a {
+  color: inherit;
+  font-size: .8em;
+  display: none;
+}
+.doclist-content {
+  max-width: 800px;
+}
+.doclist-content .doclist-content-pad {
+  padding-left: 1rem;
+}
