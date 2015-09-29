@@ -1,17 +1,221 @@
 <?php
 /*
   
-  Plugin Name:    PL Resources
+  Plugin Name:    PageLines Section Resources
   Description:    Documentation and resources section
 
   Author:         PageLines
   Author URI:     http://www.pagelines.com
 
-  Version:        1.0.0
+  Version:        5.0.1
   PageLines:      PL_Resources
   Filter:         advanced
 
 */
+
+/**
+ * 
+ * SECTION
+ * Only do the rest if Platform is activated
+ * 
+ */
+if( class_exists( 'PL_Section' ) ){
+  
+  class PL_Resources extends PL_Section {
+
+    function section_persistent(){
+
+      $this->pt   = PL_Resources_Config::$post_type;
+      $this->tax  = PL_Resources_Config::$taxonomy;
+
+      global $pl_resources_config;
+    
+      $this->config = $pl_resources_config;
+      
+    }
+
+
+    function section_template(){
+
+      global $post; 
+      
+      $pt_name = get_post_type_object( get_post_type( ) )->labels->name;
+
+      ?>
+
+      <div class="pl-resources-mast">
+        <div class="pl-content-area">
+          <h4><a href="<?php echo get_post_type_archive_link( get_post_type( ) );?>"><?php echo ( ! is_archive() ) ? $pt_name : 'PageLines Framework';?></a></h4>
+          <h1><?php (is_archive()) ? post_type_archive_title() : the_title();?></h1>
+
+          <form class="pl-resources-search" action="<?php echo home_url( '/' ); ?>" method="get">
+            <fieldset>
+              <button type="submit" class="search-button" onClick="submit()">
+                <i class="pl-icon pl-icon-search"></i>
+              </button>
+              <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="Search Documentation..." />
+              <?php echo ( pl_is_workarea_iframe() ) ? '<input type="hidden" name="iframe" value="1"/>' : ''; ?>
+              <input type="hidden" value="<?php echo $this->pt;?>" name="post_type" id="post_type" />
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="pl-resources-content">
+        <div class="pl-content-area">
+          <?php echo $this->get_content();?>
+        </div>
+      </div>
+      <?php 
+      
+    }
+
+    function get_content(){
+
+      ob_start();
+
+      if( is_search() ){
+        $this->get_search();
+      }
+
+      else if( is_archive() || is_page() ){
+    
+        $this->get_archive();
+       
+      }
+
+      else{
+        $this->get_single();
+      }
+
+      
+
+      return ob_get_clean();
+    }
+
+
+
+    function get_search(){
+
+      if ( have_posts() ) : 
+      while ( have_posts() ) : the_post(); ?>
+              
+        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+
+        <?php the_content();?>
+           
+      <?php endwhile; 
+
+      else: 
+
+        printf( __('<h4>No results for &quot;%s&quot;</h4>', 'pagelines'), get_search_query());
+
+
+      endif;
+    }
+
+    function get_single(){ 
+
+
+      ?>
+
+      <div class="pl-row">
+        <div class="resources-entry pl-col-sm-9">
+          <div class="pad docnav-scan"><?php the_content(); ?></div>
+        </div>
+        <sidebar class="resources-sidebar pl-col-sm-3">
+          <div class="pad js-stickaroo"><?php echo $this->get_sidebar();?></div>
+        </sidebar>
+      </div>
+  <?php 
+  
+
+    }
+
+    function get_archive(){
+
+       $terms = $this->config->get_ordered_terms();
+
+      if( ! empty( $terms ) ):
+      
+        printf('<div class="pl-row">');
+
+        foreach( $terms as $term ): 
+
+            $term_meta = get_option( "taxonomy_$term->term_id" ); 
+         
+            // Define the query
+            $args = array(
+                'post_type'   => $this->pt,
+                $this->tax    => $term->slug
+            );
+            $query = new WP_Query( $args );
+
+            $icon = ( isset($term->meta['icon_slug']) && $term->meta['icon_slug'] != '' ) ? $term->meta['icon_slug'] : 'pagelines';
+
+            $icon = str_replace( 'pl-icon-', '', $icon );
+
+            ?>
+            <div class="pl-col-sm-4">
+              <div class="resource-chapter fix">
+                <!-- <div class="chapter-icon"><i class="pl-icon pl-icon-<?php echo $icon;?>"></i></div> -->
+                
+                <div class="chapter-items">
+                <h4><?php echo $term->name;?></h4>
+                <div class="sub"><?php echo $term->description;?></div>
+                <ul>
+              <?php 
+
+              while ( $query->have_posts() ) : $query->the_post(); ?>
+               
+                  <li class="chapter-list-item" id="post-<?php the_ID(); ?>">
+                      <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                  </li>
+            
+              <?php endwhile; ?>
+                </ul>
+                </div>
+              </div>
+            </div>
+     <?php         
+
+        endforeach;
+
+        echo '</div>';
+
+      else: 
+
+        printf('No chapters found with posts in them. Create some.');
+
+      endif;
+
+    }
+
+    function get_sidebar(){
+      ob_start(); 
+
+      ?>
+      <div class="widget">
+        <h3 class="widgettitle">On This Page</h3>
+        <ul class="resource-nav doclist-nav">
+        </ul>
+      </div>
+
+      <div class="widget">
+        <h3 class="widgettitle">In Chapter</h3>
+        <ul class="resource-nav doclist-nav">
+
+        </ul>
+      </div>
+      <?php 
+
+      return ob_get_clean();
+    }
+
+
+  }
+
+}
+
 
 
 /**
@@ -187,202 +391,4 @@ if( ! class_exists( 'PL_Resources_Config' )){
 global $pl_resources_config;
 $pl_resources_config = new PL_Resources_Config(); 
 
-/**
- * 
- * SECTION
- * Only do the rest of PageLines Framework is activated
- * 
- */
-if( ! class_exists( 'PL_Section' ) )
-  return;
 
-
-
-class PL_Resources extends PL_Section {
-
-  function section_persistent(){
-
-    $this->pt   = PL_Resources_Config::$post_type;
-    $this->tax  = PL_Resources_Config::$taxonomy;
-
-    global $pl_resources_config;
-  
-    $this->config = $pl_resources_config;
-    
-  }
-
-  
-
-  function section_styles(){
-      
-    
-    
-  }
-
-  function section_template(){
-
-    global $post; 
-    
-    $pt_name = get_post_type_object( get_post_type( ) )->labels->name;
-
-    ?>
-
-    <div class="pl-resources-mast">
-      <div class="pl-content-area">
-        <h4><a href="<?php echo get_post_type_archive_link( get_post_type( ) );?>"><?php echo ( ! is_archive() ) ? $pt_name : 'PageLines Framework';?></a></h4>
-        <h1><?php (is_archive()) ? post_type_archive_title() : the_title();?></h1>
-
-        <form class="pl-resources-search" action="<?php echo home_url( '/' ); ?>" method="get">
-          <fieldset>
-            <button type="submit" class="search-button" onClick="submit()">
-              <i class="pl-icon pl-icon-search"></i>
-            </button>
-            <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" placeholder="Search Documentation..." />
-            <?php echo ( pl_is_workarea_iframe() ) ? '<input type="hidden" name="iframe" value="1"/>' : ''; ?>
-            <input type="hidden" value="<?php echo $this->pt;?>" name="post_type" id="post_type" />
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <div class="pl-resources-content">
-      <div class="pl-content-area">
-        <div class="row">
-          <div class="resources-entry pl-col-sm-9">
-            <div class="pad docnav-scan"><?php echo $this->get_content();?></div>
-          </div>
-          <sidebar class="resources-sidebar pl-col-sm-3">
-            <div class="pad js-stickaroo"><?php echo $this->get_sidebar();?></div>
-          </sidebar>
-        </div>
-      </div>
-    </div>
-    <?php 
-    
-  }
-
-  function get_content(){
-
-    ob_start();
-
-    if( is_search() ){
-      $this->get_search();
-    }
-
-    else if( is_archive() ){
-      $this->get_archive();
-     
-    }
-
-    else if( is_single() ){
-      $this->get_single();
-    }
-
-    
-
-    return ob_get_clean();
-  }
-
-  function get_search(){
-
-    while ( have_posts() ) : the_post(); ?>
-            
-      <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-      <?php the_content();?>
-         
-    <?php endwhile; 
-
-  }
-
-  function get_single(){
-?>
-    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-<?php 
-    the_content();
-
-  }
-
-  function get_archive(){
-
-     $terms = $this->config->get_ordered_terms();
-    
-    foreach( $terms as $term ) {
-
-        $term_meta = get_option( "taxonomy_$term->term_id" ); 
-     
-        // Define the query
-        $args = array(
-            'post_type'   => $this->pt,
-            $this->tax    => $term->slug
-        );
-        $query = new WP_Query( $args );
-
-        $icon = ( isset($term->meta['icon_slug']) && $term->meta['icon_slug'] != '' ) ? $term->meta['icon_slug'] : 'pagelines';
-
-        $icon = str_replace( 'pl-icon-', '', $icon );
-
-        ?>
-        <div class="resource-chapter media fix">
-          <div class="chapter-icon img"><i class="icon icon-<?php echo $icon;?>"></i></div>
-          
-          <div class="chapter-items bd">
-          <h3><?php echo $term->name;?></h3>
-          <div class="sub"><?php echo $term->description;?></div>
-          <ul>
-        <?php 
-
-        while ( $query->have_posts() ) : $query->the_post(); ?>
-         
-            <li class="chapter-list-item" id="post-<?php the_ID(); ?>">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-            </li>
-      
-        <?php endwhile; ?>
-          </ul>
-          </div>
-        </div>
- <?php         
-    }
-
-  }
-
-  function get_sidebar(){
-    ob_start(); 
-
-    ?>
-    <div class="widget">
-      <h3 class="widgettitle">On This Page</h3>
-      <ul class="resource-nav doclist-nav">
-
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-      </ul>
-    </div>
-
-    <div class="widget">
-      <h3 class="widgettitle">In Chapter</h3>
-      <ul class="resource-nav doclist-nav">
-
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-        <li><a>Whatever</a></li>
-      </ul>
-    </div>
-    <?php 
-
-    return ob_get_clean();
-  }
-
-
-
-
-
-}
