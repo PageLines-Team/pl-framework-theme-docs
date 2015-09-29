@@ -1,13 +1,13 @@
 <?php
 /*
   
-  Plugin Name:    PL Resources
+  Plugin Name:    PageLines Section Resources
   Description:    Documentation and resources section
 
   Author:         PageLines
   Author URI:     http://www.pagelines.com
 
-  Version:        1.0.0
+  Version:        5.0.1
   PageLines:      PL_Resources
   Filter:         advanced
 
@@ -34,13 +34,6 @@ if( class_exists( 'PL_Section' ) ){
       
     }
 
-    
-
-    function section_styles(){
-        
-      
-      
-    }
 
     function section_template(){
 
@@ -99,7 +92,7 @@ if( class_exists( 'PL_Section' ) ){
       return ob_get_clean();
     }
 
-    
+
 
     function get_search(){
 
@@ -107,6 +100,7 @@ if( class_exists( 'PL_Section' ) ){
       while ( have_posts() ) : the_post(); ?>
               
         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+
         <?php the_content();?>
            
       <?php endwhile; 
