@@ -4,8 +4,6 @@
 
 .pl-resources-mast{
   padding: 7vw; 
-  background: #222; 
-  color: #eee;
   h1, h4{
     margin: 0;
   }
@@ -43,14 +41,17 @@
   }
 }
 
+
 .pl-resources-search{
   margin-top: 1rem;
+  position: relative;
   input{
     width: 100%;
     background: transparent;
-    border: 1px solid #666;
+    border: 1px solid rgba(0,0,0,.1);
     font-size: 1.3em;
     padding: .5em 1em; 
+
     &:focus{
       background: rgba(255,255,255,.1);
       border: 1px solid #999;
@@ -61,11 +62,12 @@
     background: none;
     border: none;
     position: absolute;
-    right: 0;
+    right: .4em;
     width: 2em;
     font-size: 1.6em;
     opacity: .3;
     text-align: center;
+    box-sizing: content-box;
     &:hover, {
       opacity: .5;
     }
@@ -75,6 +77,7 @@
     }
   }
 } 
+
 
 .resource-chapter{
   margin-bottom: 2em;
@@ -106,12 +109,10 @@
       list-style-type: none;
       a{
         display: block;
-        border: 1px solid #ddd;
         padding: .8em 1.5em;
         line-height: 1;
         &:hover{
           text-decoration: none;
-          border: 1px solid #ccc;
         }
       }
     }

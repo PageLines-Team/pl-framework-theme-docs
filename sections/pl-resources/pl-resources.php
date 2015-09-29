@@ -246,7 +246,7 @@ class PL_Resources extends PL_Section {
     </div>
     <div class="pl-resources-content">
       <div class="pl-content-area">
-        <div class="row">
+        <div class="pl-row">
           <div class="resources-entry pl-col-sm-9">
             <div class="pad docnav-scan"><?php echo $this->get_content();?></div>
           </div>
@@ -268,12 +268,13 @@ class PL_Resources extends PL_Section {
       $this->get_search();
     }
 
-    else if( is_archive() ){
+    else if( is_archive() || is_page() ){
+  
       $this->get_archive();
      
     }
 
-    else if( is_single() ){
+    else{
       $this->get_single();
     }
 
@@ -284,6 +285,7 @@ class PL_Resources extends PL_Section {
 
   function get_search(){
 
+    if ( have_posts() ) : 
     while ( have_posts() ) : the_post(); ?>
             
       <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -291,10 +293,18 @@ class PL_Resources extends PL_Section {
          
     <?php endwhile; 
 
+    else: 
+
+      printf( __('<h4>No results for &quot;%s&quot;</h4>', 'pagelines'), get_search_query());
+
+
+    endif;
   }
 
-  function get_single(){
-?>
+  function get_single(){ 
+
+
+    ?>
     <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 <?php 
     the_content();
@@ -304,8 +314,10 @@ class PL_Resources extends PL_Section {
   function get_archive(){
 
      $terms = $this->config->get_ordered_terms();
+
+    if( ! empty( $terms ) ):
     
-    foreach( $terms as $term ) {
+    foreach( $terms as $term ): 
 
         $term_meta = get_option( "taxonomy_$term->term_id" ); 
      
@@ -322,7 +334,7 @@ class PL_Resources extends PL_Section {
 
         ?>
         <div class="resource-chapter media fix">
-          <div class="chapter-icon img"><i class="icon icon-<?php echo $icon;?>"></i></div>
+          <div class="chapter-icon img"><i class="pl-icon pl-icon-<?php echo $icon;?>"></i></div>
           
           <div class="chapter-items bd">
           <h3><?php echo $term->name;?></h3>
@@ -341,7 +353,14 @@ class PL_Resources extends PL_Section {
           </div>
         </div>
  <?php         
-    }
+
+    endforeach;
+
+    else: 
+
+      printf('No chapters found with posts in them. Create some.');
+
+    endif;
 
   }
 

@@ -3,8 +3,6 @@
 }
 .pl-resources-mast {
   padding: 7vw;
-  background: #222;
-  color: #eee;
 }
 .pl-resources-mast h1,
 .pl-resources-mast h4 {
@@ -38,11 +36,12 @@
 }
 .pl-resources-search {
   margin-top: 1rem;
+  position: relative;
 }
 .pl-resources-search input {
   width: 100%;
   background: transparent;
-  border: 1px solid #666;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   font-size: 1.3em;
   padding: .5em 1em;
 }
@@ -55,11 +54,12 @@
   background: none;
   border: none;
   position: absolute;
-  right: 0;
+  right: .4em;
   width: 2em;
   font-size: 1.6em;
   opacity: .3;
   text-align: center;
+  box-sizing: content-box;
 }
 .pl-resources-search .search-button:hover {
   opacity: .5;
@@ -101,11 +101,9 @@
 }
 .resource-chapter .chapter-items .chapter-list-item a {
   display: block;
-  border: 1px solid #ddd;
   padding: .8em 1.5em;
   line-height: 1;
 }
 .resource-chapter .chapter-items .chapter-list-item a:hover {
   text-decoration: none;
-  border: 1px solid #ccc;
 }

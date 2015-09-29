@@ -25,14 +25,14 @@ module.exports = function(grunt) {
       watch: {
         lessMain: {
           // what files/folder we watching?
-          files: [ 'build.less' ],
+          files: [ 'build.less', 'sections/**/*.less' ],
           // tasks to run in order when something changes
-          tasks: ['less:compileMain'],
+          tasks: ['less:compileMain', 'less:compileSections'],
           options: {
               nospawn: true,
           }
         }
-        },
+      },
       // The LESS task, compiles build.less into a usable style.css file
       less: {
         compileMain: {
