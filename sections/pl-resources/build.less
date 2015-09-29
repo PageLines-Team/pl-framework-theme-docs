@@ -1,9 +1,79 @@
+
+.flex-vertical(){
+  .flex-display(); 
+  .flex-direction( column );
+  .justify-content( center ); 
+}
+
+
+.flex(@flex: 1 1 auto) {
+  -webkit-flex: @flex;
+      -ms-flex: @flex;
+          flex: @flex;
+}
+
+// Flexbox display
+// flex or inline-flex
+.flex-display(@display: flex) {
+  display: ~"-webkit-@{display}";
+  display: ~"-moz-@{display}";
+  display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+  display: ~"-ms-@{display}"; // IE11
+  display: @display;
+}
+
+.flex-direction(@direction: row) {
+  -webkit-flex-direction: @direction;
+     -moz-flex-direction: @direction;
+      -ms-flex-direction: @direction;
+          flex-direction: @direction;
+}
+
+.justify-content(@justify: center) {
+  -webkit-justify-content: @justify;
+     -moz-justify-content: @justify;
+      -ms-justify-content: @justify;
+          justify-content: @justify;
+}
+
+.flex-wrap(@wrap: nowrap) {
+  -webkit-flex-wrap: @wrap;
+     -moz-flex-wrap: @wrap;
+      -ms-flex-wrap: @wrap;
+          flex-wrap: @wrap;
+}
+
+.flex-basis(@basis: 100%) {
+  -webkit-flex-basis: @basis;
+     -moz-flex-basis: @basis;
+    -ms-flex-preferred-size: @basis; 
+      -ms-flex-basis: @basis;
+          flex-basis: @basis;
+}
+
+.flex-order(@order: 3) {
+  -webkit-order: @order;
+     -moz-order: @order;
+      -ms-order: @order;
+          order: @order;
+}
+
+.flex-grow(@grow: 0) {
+  -webkit-flex-grow: @grow;
+     -moz-flex-grow: @grow;
+      -ms-flex-grow: @grow;
+          flex-grow: @grow;
+}
+
+
+
+
 .pl-sn-resources .pl-sn-pad{
   padding: 0;
 }
 
 .pl-resources-mast{
-  padding: 7vw; 
+  padding: 7vw 0; 
   h1, h4{
     margin: 0;
   }
@@ -16,7 +86,7 @@
 .pl-resources-content{
   .resources-entry, 
   .resources-sidebar{
-    padding: 5vw 2vw;
+    padding: 2vw;
   }
   
   .resources-sidebar{
@@ -49,7 +119,7 @@
     width: 100%;
     background: transparent;
     border: 1px solid rgba(0,0,0,.1);
-    font-size: 1.3em;
+    font-size: 1.1em;
     padding: .5em 1em; 
 
     &:focus{
@@ -64,7 +134,7 @@
     position: absolute;
     right: .4em;
     width: 2em;
-    font-size: 1.6em;
+    font-size: 1.3em;
     opacity: .3;
     text-align: center;
     box-sizing: content-box;
@@ -85,11 +155,9 @@
     font-size: 5em;
     line-height: 1;
     opacity: 1;
-    width: 150px;
-    text-align: right;
   }
   .chapter-items{
-    padding: .5em;
+    
     h3{
       margin: 0;
       font-weight: 500;
@@ -109,7 +177,7 @@
       list-style-type: none;
       a{
         display: block;
-        padding: .8em 1.5em;
+        padding: 5px 0;
         line-height: 1;
         &:hover{
           text-decoration: none;
