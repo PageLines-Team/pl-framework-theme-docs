@@ -4,7 +4,7 @@ Sharebar is the easiest way for site visitors to share your posts and pages to F
 
 <h4>Installation/Activation Instructions</h4>
 
-Sharebar can easily be downloaded from inside WordPress using PageLines Connect.
+Sharebar can easily be downloaded from inside WordPress using PageLines Platform 5.
 <ol type="1">
 <li>Download the plugin from the Connect store. It will now appear in your 'Plugins' tab.</li>
 
